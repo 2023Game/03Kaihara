@@ -1,12 +1,14 @@
-#include "CApplication.h"
+ï»¿#include "CApplication.h"
 #include "CRectangle.h"
+//OpenGL
+#include "glut.h"
 
-//ƒNƒ‰ƒX‚Ìstatic•Ï”
+//ã‚¯ãƒ©ã‚¹ã®staticå¤‰æ•°
 CTexture CApplication::mTexture;
 CCharacterManager CApplication::mCharacterManager;
 
-#define SOUND_BGM "res\\mario.wav" //BGM‰¹ºƒtƒ@ƒCƒ‹
-#define SOUND_OVER "res\\mdai.wav" //ƒQ[ƒ€ƒI[ƒo[‰¹ºƒtƒ@ƒCƒ‹
+#define SOUND_BGM "res\\mario.wav" //BGMéŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«
+#define SOUND_OVER "res\\mdai.wav" //ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼éŸ³å£°ãƒ•ã‚¡ã‚¤ãƒ«
 
 CCharacterManager* CApplication::CharacterManager()
 {
@@ -20,68 +22,39 @@ CTexture* CApplication::Texture()
 
 void CApplication::Start()
 {
-	//Sound
-	mSoundBgm.Load(SOUND_BGM);
-	mSoundOver.Load(SOUND_OVER);
 
-	mFont.Load("FontWhite.png", 1, 64);
-	mState = EState::ESTART;
-	mpGame = new CGame();
 }
 
-void CApplication::Update()
-{
-	switch (mState)
-	{
-	case EState::ESTART:	//ó‘Ô‚ªƒXƒ^[ƒg
-		mpGame->Start();	//ƒXƒ^[ƒg‰æ–Ê•\¦
-		//EnterƒL[‚ª‰Ÿ‚³‚ê‚½‚ç
-		if (mInput.Key(VK_RETURN))
-		{	//ó‘Ô‚ğƒvƒŒƒC’†‚É‚·‚é
-			mState = EState::EPLAY;
-			//BGMƒŠƒs[ƒgÄ¶
-			mSoundBgm.Repeat();
-		}
-		break;
-	case EState::EPLAY:
-		mpGame->Update();
-		//ƒQ[ƒ€ƒI[ƒo[‚©”»’è
-		if (mpGame->IsOver())
-		{	//ó‘Ô‚ğƒQ[ƒ€ƒI[ƒo[‚É‚·‚é
-			mState = EState::EOVER;
-			//BGMƒXƒgƒbƒv
-			mSoundBgm.Stop();
-			//ƒQ[ƒ€ƒI[ƒo[
-			mSoundOver.Play();
-		}
-		//ƒQ[ƒ€ƒNƒŠƒA‚©”»’è
-		if (mpGame->IsClear())
-		{	//ó‘Ô‚ğƒQ[ƒ€ƒNƒŠƒA‚É‚·‚é
-			mState = EState::ECLEAR;
-		}
-		break;
-	case EState::EOVER:
-		//ƒQ[ƒ€ƒI[ƒo[ˆ—
-		mpGame->Over();
-		//ƒGƒ“ƒ^[ƒL[“ü—Í
-		if (mInput.Key(VK_RETURN))
-		{	//ƒQ[ƒ€‚ÌƒCƒ“ƒXƒ^ƒ“ƒXíœ
-			delete mpGame;
-			//ƒQ[ƒ€‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-			mpGame = new CGame();
-			//ó‘Ô‚ğƒXƒ^[ƒg‚É‚·‚é
-			mState = EState::ESTART;
-		}
-		break;
-	case EState::ECLEAR:
-		//ƒQ[ƒ€ƒNƒŠƒAˆ—
-		mpGame->Clear();
-		if (mInput.Key(VK_RETURN))
-		{
-			delete mpGame;
-			mpGame = new CGame();
-			mState = EState::ESTART;
-		}
-		break;
-	}
+void CApplication::Update() {
+	//è¦–ç‚¹ã®è¨­å®š
+	//gluLookAt(è¦–ç‚¹X, è¦–ç‚¹Y, è¦–ç‚¹Z, ä¸­å¿ƒX, ä¸­å¿ƒY, ä¸­å¿ƒZ, ä¸Šå‘X, ä¸Šå‘Y, ä¸Šå‘Z)
+	gluLookAt(1.0f, 2.0f, 3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+
+	//æç”»é–‹å§‹
+	//glBegin(å½¢)
+	//GL_TRIANGLES:ä¸‰è§’å½¢
+	glBegin(GL_TRIANGLES);
+
+	//æ³•ç·š(é¢ã®å‘ã)ã®è¨­å®š
+	//glNormal3f(Xåº§æ¨™, Yåº§æ¨™, Zåº§æ¨™)
+	glNormal3f(0.0f, 1.0f, 0.0f);
+	//é ‚ç‚¹åº§æ¨™ã®è¨­å®š
+	//glVertex3f(Xåº§æ¨™, Yåº§æ¨™, Zåº§æ¨™)
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, -0.5f);
+
+	//é¢ã®å‘ãã¯Zè»¸æ–¹å‘
+	glNormal3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 1.0f, 0.0f);
+	glVertex3f(-0.5f, 0.0f, 0.0f);
+
+	glNormal3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 1.0f);
+	glVertex3f(0.0f, -0.5f, 0.0f);
+
+	//æç”»çµ‚äº†
+	glEnd();
 }
