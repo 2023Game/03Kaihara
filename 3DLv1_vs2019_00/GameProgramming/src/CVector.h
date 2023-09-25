@@ -6,7 +6,12 @@
 */
 class CVector {
 public:
+	//デフォルトコントラスタ
+	CVector();
+	// コントラスタ
+	// CVector(X座標,Y座標,Z座標)
 	//各軸での値の設定
+	CVector(float x, float y, float z);
 	//Set(X座標, Y座標, Z座標)
 	void Set(float x, float y, float z);
 	//Xの値を得る
