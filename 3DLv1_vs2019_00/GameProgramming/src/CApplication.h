@@ -13,6 +13,7 @@
 #include "CVector.h"
 #include "CGame.h"
 #include "CSound.h"
+#include "CModel.h"
 
 class CApplication
 {
@@ -38,6 +39,9 @@ private:
 	CFont mFont;
 	CMiss* mpMiss;
 	CVector mEye;
+	//モデルクラスのインスタンス作成
+	CModel mModel;
+
 	//CCharacterのポインタの可変長配列
 //	std::vector<CCharacter*> mCharacters;
 public:
