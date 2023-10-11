@@ -84,6 +84,16 @@ void CModel::Load(char* obj, char* mtl) {
 		else if (strcmp(str[0], "map_Kd") == 0) {
 			mpMaterials[idx]->Texture()->Load(str[1]);
 		}
+		//先頭がusemtlの時、マテリアルインデックスを取得する
+		else if (strcmp(str[0], "usemtl") == 0) {
+			//可変長配列を後から比較
+			for (idx = mpMaterials.size() - 1; idx > 0; idx--) {
+				//同じ名前のマテリアルがあればループ終了
+				if (strcmp(mpMaterials[idx]->Name(), str[1]) == 0) {
+					break; //ループから出る
+				}
+			}
+		}
 	}
 
 	//ファイルのクローズ
@@ -123,6 +133,12 @@ void CModel::Load(char* obj, char* mtl) {
 			//可変長配列normalに追加
 			//atof(文字列)　文字列からfloat型の値を返す
 			normal.push_back(CVector(atof(str[1]), atof(str[2]), atof(str[3])));
+		}
+		//先頭がKdの時、Diffuseを設定する
+		else if (strcmp(str[0], "Kd") == 0) {
+			mpMaterials[idx]->Diffuse()[0] = atof(str[1]);
+			mpMaterials[idx]->Diffuse()[1] = atof(str[2]);
+			mpMaterials[idx]->Diffuse()[2] = atof(str[3]);
 		}
 		//先頭がfの時、三角形を作成して追加する
 		else if (strcmp(str[0], "f") == 0) {
