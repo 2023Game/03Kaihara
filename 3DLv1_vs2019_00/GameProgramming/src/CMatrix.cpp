@@ -29,9 +29,9 @@ CMatrix CMatrix::Identity() {
 //Šg‘åk¬s—ñ‚Ìì¬
 //Scale(”{—¦X, ”{—¦Y, ”{—¦Z)
 CMatrix CMatrix::Scale(float sx, float sy, float sz) {
-	mM[0][0] *= sx;
-	mM[1][1] *= sy;
-	mM[2][2] *= sz;
+	mM[0][0] *= sx; mM[0][1] *= sx; mM[0][2] *= sx; mM[0][3] *= sx;
+	mM[1][0] *= sy; mM[1][1] *= sy; mM[1][2] *= sy; mM[1][3] *= sy;
+	mM[2][0] *= sz; mM[2][1] *= sz; mM[2][2] *= sz; mM[2][3] *= sz;
 	//‚±‚Ìs—ñ‚ğ•Ô‚·
 	return *this;
 }
