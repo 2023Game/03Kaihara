@@ -78,6 +78,6 @@ void CApplication::Update() {
 	}
 
 
-	mModel.Render();
+	mModel.Render(CMatrix().Scale(0.1f, 0.1f, 0.1f));
 	mBackGround.Render();
 }

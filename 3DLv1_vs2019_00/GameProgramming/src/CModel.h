@@ -4,12 +4,16 @@
 #include <vector>
 #include "CTriangle.h"
 #include "CMaterial.h"
+#include "CMatrix.h"
 /*
 モデルクラス
 モデルデータの入力や表示
 */
 class CModel {
 public:
+	//描画
+	//Render(行列)
+	void Render(const CMatrix& m);
 	~CModel();
 	//モデルファイルの入力
 	//Load(モデルファイル名, マテリアルファイル名)
