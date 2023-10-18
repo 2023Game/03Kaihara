@@ -15,8 +15,8 @@ CMatrix CMatrix::RotateX(float degree) {
 	Identity();
 	//X²‚Å‰ñ“]‚·‚és—ñ‚Ìİ’è
 	mM[1][1] = mM[2][2] = cos(rad);
-	mM[1][2] = -sinf(rad);
-	mM[2][1] = -mM[1][2];
+	mM[2][1] = -sinf(rad);
+	mM[1][2] = -mM[2][1];
 	//s—ñ‚ğ•Ô‚·
 	return *this;
 }
