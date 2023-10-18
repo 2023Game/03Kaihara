@@ -14,7 +14,7 @@ CMatrix CMatrix::RotateX(float degree) {
 	//単位行列にする
 	Identity();
 	//X軸で回転する行列の設定
-	mM[1][1] = mM[2][2] = cosf(rad);
+	mM[1][1] = mM[2][2] = cos(rad);
 	mM[1][2] = -sinf(rad);
 	mM[2][1] = -mM[1][2];
 	//行列を返す
@@ -30,8 +30,8 @@ CMatrix CMatrix::RotateY(float degree) {
 	Identity();
 	//Y軸で回転する行列の設定
 	mM[0][0] = mM[2][2] = cosf(rad);
-	mM[0][2] = -sinf(rad);
-	mM[2][0] = -mM[0][2];
+	mM[2][0] = -sinf(rad);
+	mM[0][2] = -mM[2][0];
 	//行列を返す
 	return *this;
 }
