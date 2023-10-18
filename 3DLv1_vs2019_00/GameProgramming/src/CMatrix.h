@@ -6,6 +6,15 @@
 */
 class CMatrix {
 public:
+	//回転行列（Z軸）の作成
+	//RotateZ(角度)
+	CMatrix RotateZ(float degree);
+	//回転行列（Y軸）の作成
+	//RotateY(角度)
+	CMatrix RotateY(float degree);
+	//回転行列（Y軸）の作成
+	//RotateX(角度)
+	CMatrix RotateX(float degree);
 	//拡大縮小行列の作成
 	//Scale(倍率X, 倍率Y, 倍率Z)
 	CMatrix Scale(float sx, float sy, float sz);
