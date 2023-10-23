@@ -6,6 +6,23 @@
 //数学関数のインクルード
 #include <math.h>
 
+//*演算子のオーバーロード
+//CMatrix * CMatrix の演算結果を返す
+const CMatrix CMatrix::operator*(const CMatrix& m) const
+{
+	CMatrix t;
+	for(int a = 0;a <= 3; a++ )
+	{
+			t.mM[a][0] = mM[a][0] * m.mM[0][0] + mM[a][1] * m.mM[1][0] + mM[a][2] * m.mM[2][0] + mM[a][3] * m.mM[3][0];
+			t.mM[a][1] = mM[a][0] * m.mM[0][1] + mM[a][1] * m.mM[1][1] + mM[a][2] * m.mM[2][1] + mM[a][3] * m.mM[3][1];
+			t.mM[a][2] = mM[a][0] * m.mM[0][2] + mM[a][1] * m.mM[1][2] + mM[a][2] * m.mM[2][2] + mM[a][3] * m.mM[3][2];
+			t.mM[a][3] = mM[a][0] * m.mM[0][3] + mM[a][1] * m.mM[1][3] + mM[a][2] * m.mM[2][3] + mM[a][3] * m.mM[3][3];
+	}
+	
+	return t;
+}
+
+
 //移動行列の作成
 //Translate(移動量X, 移動量Y, 移動量Z)
 CMatrix CMatrix::Translate(float mx, float my, float mz) {
