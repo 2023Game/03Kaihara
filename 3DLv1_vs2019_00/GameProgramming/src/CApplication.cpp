@@ -42,6 +42,8 @@ void CApplication::Start()
 	mCharacter.Model(&mModel);
 	mCharacter.Scale(CVector(0.1f, 0.1f, 0.1f));
 	mPlayer.Model(&mModel);
+	mPlayer.Position(CVector(0.0f, 0.0f, -3.0f));
+	mPlayer.Rotation(CVector(0.0f, 180.0f, 0.0f));
 	mPlayer.Scale(CVector(0.1f, 0.1f, 0.1f));
 }
 
@@ -64,19 +66,9 @@ void CApplication::Update() {
 
 	mCharacter.Update();
 	mCharacter.Render();
-	trans.Position(CVector(0.0f, 0.0f, 0.0f)); //位置の設定
-	trans.Rotation(CVector(0.0f, 0.0f, 0.0f)); //回転の設定
-	trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
-	trans.Update(); //行列の更新
-	mModel.Render(trans.Matrix());
 
 	mPlayer.Update();
 	mPlayer.Render();
-	trans.Position(CVector(0.0f, 0.0f, -3.0f)); //位置の設定
-	trans.Rotation(CVector(0.0f, 180.0f, 0.0f)); //回転の設定
-	trans.Scale(CVector(0.1f, 0.1f, 0.1f)); //拡大縮小の設定
-	trans.Update(); //行列の更新
-	mModel.Render(trans.Matrix());
 
 	mBackGround.Render();
 
