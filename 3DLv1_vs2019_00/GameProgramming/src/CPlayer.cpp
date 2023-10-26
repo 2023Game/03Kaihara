@@ -1,5 +1,6 @@
 //プレイヤークラスのインクルード
 #include "CPlayer.h"
+#define VELOCITY CVector(0.0f, 0.0f, 0.1f) //移動速度
 
 #define ROTATION_YV	CVector(0.0f, 1.0f, 0.0f) //回転速度
 
@@ -17,6 +18,17 @@ void CPlayer::Update() {
 		//Y軸の回転値を減少
 		mRotation = mRotation - ROTATION_YV;
 	}
+	//Aキー入力で回転
+	if (mInput.Key('A')) {
+		//Y軸の回転値を増加
+		mRotation = mRotation + ROTATION_YV;
+	}
+	//上キー入力で前進
+	if (mInput.Key(VK_UP)) {
+		//Z軸方向の値を回転させ移動させる
+		mPosition = mPosition + VELOCITY * mMatrixRotate;
+	}
+
 	//変換行列の更新
 	CTransform::Update();
 }

@@ -12,7 +12,7 @@
 CTexture CApplication::mTexture;
 CCharacterManager CApplication::mCharacterManager;
 CCharacter3 mCharacter;
-CCharacter3 mPlayer;
+CPlayer mPlayer;
 
 //背景モデルデータの指定
 #define MODEL_BACKGROUND  "res\\sky.obj", "res\\sky.mtl"
