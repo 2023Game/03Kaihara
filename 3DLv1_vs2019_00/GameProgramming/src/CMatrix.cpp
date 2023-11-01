@@ -121,3 +121,8 @@ CMatrix CMatrix::Scale(float sx, float sy, float sz) {
 float CMatrix::M(int r, int c) const{
 	return mM[r][c];
 }
+
+float* CMatrix::M() const
+{
+	return (float*)mM[0];
+}
