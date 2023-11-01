@@ -238,7 +238,6 @@ CModel::~CModel()
 	}
 	delete[] mpVertexes;
 }
-
 //•`‰æ
 //Render(s—ñ)
 void CModel::Render(const CMatrix& m)
