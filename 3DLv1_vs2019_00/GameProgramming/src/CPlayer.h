@@ -2,6 +2,7 @@
 #define CPLAYER_H
 //キャラクタクラスのインクルード
 #include "CCharacter3.h"
+#include "CBullet.h"
 #include "CInput.h"
 
 /*
@@ -10,6 +11,7 @@
 */
 class CPlayer : public CCharacter3 {
 public:
+	CBullet bullet;
 	CPlayer() {}
 	//CPlayer(位置, 回転, スケール)
 	CPlayer(const CVector& pos, const CVector& rot
