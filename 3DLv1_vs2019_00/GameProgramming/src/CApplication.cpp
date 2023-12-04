@@ -4,14 +4,13 @@
 #include "CTriangle.h"
 #include "CMatrix.h"
 #include "CTransform.h"
-#include "CCharacter3.h"
 //OpenGL
 #include "glut.h"
 
 //クラスのstatic変数
 CTexture CApplication::mTexture;
 CCharacterManager CApplication::mCharacterManager;
-CPlayer mPlayer;
+
 
 //背景モデルデータの指定
 #define MODEL_BACKGROUND  "res\\sky.obj", "res\\sky.mtl"
@@ -45,6 +44,7 @@ void CApplication::Start()
 }
 
 void CApplication::Update() {
+
 	//頂点1、頂点2、頂点3、法線データの作成
 	CVector v0, v1, v2, n;
 	//法線を上向きで設定する
@@ -56,7 +56,6 @@ void CApplication::Update() {
 	//頂点3の座標を設定する
 	v2.Set(0.0f, 0.0f, -0.5f);
 
-	mPlayer.Update();
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
 	//視点を求める
@@ -68,15 +67,14 @@ void CApplication::Update() {
 	//カメラの設定
 	gluLookAt(e.X(), e.Y(), e.Z(), c.X(), c.Y(), c.Z(), u.X(), u.Y(), u.Z());
 
-	mPlayer.Render();
-
 	mBackGround.Render();
 
-	//タスクマネージャの更新
-	mTaskManager.Update();
+	//タスクリストの削除
+	mTaskManager.Delete();
 	//タスクマネージャの描画
 	mTaskManager.Render();
-
+	//タスクマネージャの更新
+	mTaskManager.Update();
 
 }
 

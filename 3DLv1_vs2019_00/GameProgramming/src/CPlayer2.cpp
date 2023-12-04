@@ -9,7 +9,7 @@
 #define TEXCOORD2 136,156,158,128	//右向き2
 #define TEXLEFT1 188,168,158,128	//左向き1
 #define TEXLEFT2 156,136,158,128	//左向き2
-#define VELOCITY 4.0f	//移動速度
+//#define VELOCITY 4.0f	//移動速度
 
 #define HP 3 //HPの初期値は3
 

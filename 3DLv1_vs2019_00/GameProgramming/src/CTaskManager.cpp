@@ -5,8 +5,10 @@ CTaskManager::CTaskManager()
 	mHead.mpNext = &mTail;
 	mTail.mpPrev = &mHead;
 }
+
 CTaskManager::~CTaskManager() {
 }
+
 //リストに追加
 //Add(タスクのポインタ)
 void CTaskManager::Add(CTask* addTask)
@@ -47,3 +49,24 @@ void CTaskManager::Render() {
 	}
 }
 
+void CTaskManager::Remove(CTask* task) {
+	//タスクの前の次を、タスクの次にする
+	task->mpPrev->mpNext = task->mpNext;
+	//タスクの次の前を、タスクの前にする
+	task->mpNext->mpPrev = task->mpPrev;
+}
+
+
+void CTaskManager::Delete() {
+	//先頭から最後まで繰り返し
+	CTask* task = mHead.mpNext;
+	while (task->mpNext) {
+		CTask* del = task;
+		//次へ
+		task = task->mpNext;
+		//mEnabledがfalseなら削除
+		if (del->mEnabled == false) {
+			delete del;
+		}
+	}
+}
