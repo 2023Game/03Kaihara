@@ -2,7 +2,6 @@
 #define CPLAYER_H
 //キャラクタクラスのインクルード
 #include "CCharacter3.h"
-#include "CBullet.h"
 #include "CInput.h"
 
 /*

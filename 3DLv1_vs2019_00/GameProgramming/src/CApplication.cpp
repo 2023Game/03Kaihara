@@ -45,6 +45,9 @@ void CApplication::Start()
 
 void CApplication::Update() {
 
+	//タスクマネージャの更新
+	mTaskManager.Update();
+
 	//頂点1、頂点2、頂点3、法線データの作成
 	CVector v0, v1, v2, n;
 	//法線を上向きで設定する
@@ -73,9 +76,6 @@ void CApplication::Update() {
 	mTaskManager.Delete();
 	//タスクマネージャの描画
 	mTaskManager.Render();
-	//タスクマネージャの更新
-	mTaskManager.Update();
-
 }
 
 CTaskManager CApplication::mTaskManager;

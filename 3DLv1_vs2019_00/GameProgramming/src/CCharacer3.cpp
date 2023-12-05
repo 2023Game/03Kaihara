@@ -14,7 +14,7 @@ void CCharacter3::Render()
 
 CCharacter3::~CCharacter3() {
 	//タスクリストから削除
-	//CApplication::TaskManager()->Remove(this);
+	CApplication::TaskManager()->Remove(this);
 }
 
 CCharacter3::CCharacter3()
