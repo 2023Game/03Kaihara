@@ -11,7 +11,8 @@
 CTexture CApplication::mTexture;
 CCharacterManager CApplication::mCharacterManager;
 
-
+//敵輸送機モデル
+#define MODEL_C5 "res\\c5.obj", "res\\c5.mtl"
 //背景モデルデータの指定
 #define MODEL_BACKGROUND  "res\\sky.obj", "res\\sky.mtl"
 #define SOUND_BGM "res\\mario.wav" //BGM音声ファイル
@@ -37,10 +38,17 @@ void CApplication::Start()
 	//モデルファイルの入力
 	mModel.Load(MODEL_OBJ);
 	mBackGround.Load(MODEL_BACKGROUND);
+	//C5モデルの読み込み
+	mModelC5.Load(MODEL_C5);
 	mPlayer.Model(&mModel);
 	mPlayer.Position(CVector(0.0f, 0.0f, -3.0f));
 	mPlayer.Rotation(CVector(0.0f, 180.0f, 0.0f));
 	mPlayer.Scale(CVector(0.1f, 0.1f, 0.1f));
+	//敵機のインスタンス作成
+	new CEnemy(&mModelC5, CVector(0.0f, 10.0f, -100.0f),
+		CVector(), CVector(0.1f, 0.1f, 0.1f));
+	new CEnemy(&mModelC5, CVector(30.0f, 10.0f, -130.0f),
+		CVector(), CVector(0.1f, 0.1f, 0.1f));
 }
 
 void CApplication::Update() {

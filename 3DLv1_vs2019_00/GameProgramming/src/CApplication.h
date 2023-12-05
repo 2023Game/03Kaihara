@@ -19,6 +19,8 @@
 class CApplication
 {
 private:
+	//C5ƒ‚ƒfƒ‹
+	CModel mModelC5;
 	CPlayer mPlayer;
 	static CTaskManager mTaskManager;
 	CModel mBackGround; //”wŒiƒ‚ƒfƒ‹
