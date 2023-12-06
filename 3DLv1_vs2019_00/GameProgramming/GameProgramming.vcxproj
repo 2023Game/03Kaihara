@@ -24,6 +24,7 @@
     <ClCompile Include="src\CGame.cpp" />
     <ClCompile Include="src\CMaterial.cpp" />
     <ClCompile Include="src\CModel.cpp" />
+    <ClCompile Include="src\CCollider.cpp" />
     <ClCompile Include="src\CPlayer.cpp" />
     <ClCompile Include="src\CPlayer2.cpp" />
     <ClCompile Include="src\CPoint.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="src\CMaterial.h" />
     <ClInclude Include="src\CMiss.h" />
     <ClInclude Include="src\CModel.h" />
+    <ClInclude Include="src\CCollider.h" />
     <ClInclude Include="src\CPlayer.h" />
     <ClInclude Include="src\CPlayer2.h" />
     <ClInclude Include="src\CPoint.h" />
