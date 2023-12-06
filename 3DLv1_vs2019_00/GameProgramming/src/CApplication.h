@@ -22,7 +22,6 @@ private:
 	//C5モデル
 	CModel mModelC5;
 	CPlayer mPlayer;
-	static CTaskManager mTaskManager;
 	CModel mBackGround; //背景モデル
 	CSound mSoundBgm;	//BGM
 	CSound mSoundOver;	//ゲームオーバー
@@ -51,7 +50,6 @@ private:
 	//CCharacterのポインタの可変長配列
 //	std::vector<CCharacter*> mCharacters;
 public:
-	static CTaskManager* TaskManager();
 	static CCharacterManager* CharacterManager();
 	static CTexture* Texture();
 	//最初に一度だけ実行するプログラム

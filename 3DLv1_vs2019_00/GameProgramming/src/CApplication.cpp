@@ -4,6 +4,7 @@
 #include "CTriangle.h"
 #include "CMatrix.h"
 #include "CTransform.h"
+#include "CCollisionManager.h"
 //OpenGL
 #include "glut.h"
 
@@ -54,7 +55,7 @@ void CApplication::Start()
 void CApplication::Update() {
 
 	//タスクマネージャの更新
-	mTaskManager.Update();
+	CTaskManager::Instance()->Update();
 
 	//頂点1、頂点2、頂点3、法線データの作成
 	CVector v0, v1, v2, n;
@@ -81,13 +82,8 @@ void CApplication::Update() {
 	mBackGround.Render();
 
 	//タスクリストの削除
-	mTaskManager.Delete();
+	CTaskManager::Instance()->Delete();
 	//タスクマネージャの描画
-	mTaskManager.Render();
-}
-
-CTaskManager CApplication::mTaskManager;
-CTaskManager* CApplication::TaskManager()
-{
-	return &mTaskManager;
+	CTaskManager::Instance()->Render();
+	CCollisionManager::Instance()->Render();
 }

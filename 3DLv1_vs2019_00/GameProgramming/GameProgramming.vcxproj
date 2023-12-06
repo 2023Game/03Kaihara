@@ -18,6 +18,7 @@
     <ClCompile Include="src\CCharacer3.cpp" />
     <ClCompile Include="src\CCharacter.cpp" />
     <ClCompile Include="src\CCharacterManager.cpp" />
+    <ClCompile Include="src\CCollisionManager.cpp" />
     <ClCompile Include="src\CEnemy.cpp" />
     <ClCompile Include="src\CEnemy2.cpp" />
     <ClCompile Include="src\CFont.cpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="src\CCharacter.h" />
     <ClInclude Include="src\CCharacter3.h" />
     <ClInclude Include="src\CCharacterManager.h" />
+    <ClInclude Include="src\CCollisionManager.h" />
     <ClInclude Include="src\CEnemy.h" />
     <ClInclude Include="src\CEnemy2.h" />
     <ClInclude Include="src\CFont.h" />
