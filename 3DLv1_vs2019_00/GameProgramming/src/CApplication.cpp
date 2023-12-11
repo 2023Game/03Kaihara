@@ -5,6 +5,7 @@
 #include "CMatrix.h"
 #include "CTransform.h"
 #include "CCollisionManager.h"
+#include "CBillBoard.h"
 //OpenGL
 #include "glut.h"
 
@@ -21,6 +22,13 @@ CCharacterManager CApplication::mCharacterManager;
 //モデルデータの指定
 #define MODEL_OBJ "res\\f14.obj", "res\\f14.mtl"
 
+CMatrix CApplication::mModelViewInverse;
+
+const CMatrix& CApplication::ModelViewInverse()
+{
+	return mModelViewInverse;
+}
+
 CCharacterManager* CApplication::CharacterManager()
 {
 	return &mCharacterManager;
@@ -33,6 +41,8 @@ CTexture* CApplication::Texture()
 
 void CApplication::Start()
 {
+	//ビルボードの生成
+	new CBillBoard(CVector(-6.0f, 3.0f, -10.0f), 1.0f, 1.0f);
 	CMatrix matrix;
 	matrix.Print();
 	mEye = CVector(1.0f, 2.0f, 3.0f);
@@ -80,6 +90,13 @@ void CApplication::Update() {
 	u = CVector(0.0f, 1.0f, 0.0f) * mPlayer.MatrixRotate();
 	//カメラの設定
 	gluLookAt(e.X(), e.Y(), e.Z(), c.X(), c.Y(), c.Z(), u.X(), u.Y(), u.Z());
+	//モデルビュー行列の取得
+	glGetFloatv(GL_MODELVIEW_MATRIX, mModelViewInverse.M());
+	//逆行列の取得
+	mModelViewInverse = mModelViewInverse.Transpose();
+	mModelViewInverse.M(0, 3, 0);
+	mModelViewInverse.M(1, 3, 0);
+	mModelViewInverse.M(2, 3, 0);
 
 	mBackGround.Render();
 
