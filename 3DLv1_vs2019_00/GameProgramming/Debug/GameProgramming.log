@@ -1,16 +1,2 @@
-﻿  CApplication.cpp
-  CBillBoard.cpp
-  CBullet.cpp
-  CCharacer3.cpp
-  CCollisionManager.cpp
-  CEnemy.cpp
-  CMatrix.cpp
-C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(45,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(49,27): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(60,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(75,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-  CTransform.cpp
-  コードを生成中...
-LINK : warning LNK4098: defaultlib 'MSVCRT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
-LINK : warning LNK4098: defaultlib 'LIBCMT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
+﻿  CEffect.cpp
   GameProgramming.vcxproj -> C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\Debug\GameProgramming.exe
