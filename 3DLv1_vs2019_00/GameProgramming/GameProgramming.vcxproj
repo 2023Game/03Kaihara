@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColliderLine.cpp" />
     <ClCompile Include="src\CApplication.cpp" />
     <ClCompile Include="src\CBillBoard.cpp" />
     <ClCompile Include="src\CBlock.cpp" />
@@ -19,6 +20,7 @@
     <ClCompile Include="src\CCharacer3.cpp" />
     <ClCompile Include="src\CCharacter.cpp" />
     <ClCompile Include="src\CCharacterManager.cpp" />
+    <ClCompile Include="src\CColliderLine.cpp" />
     <ClCompile Include="src\CColliderTriangle.cpp" />
     <ClCompile Include="src\CCollisionManager.cpp" />
     <ClCompile Include="src\CEffect.cpp" />
@@ -53,6 +55,7 @@
     <ClInclude Include="src\CCharacter.h" />
     <ClInclude Include="src\CCharacter3.h" />
     <ClInclude Include="src\CCharacterManager.h" />
+    <ClInclude Include="src\CColliderLine.h" />
     <ClInclude Include="src\CColliderTriangle.h" />
     <ClInclude Include="src\CCollisionManager.h" />
     <ClInclude Include="src\CEffect.h" />
