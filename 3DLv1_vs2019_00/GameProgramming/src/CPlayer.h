@@ -4,13 +4,15 @@
 #include "CCharacter3.h"
 #include "CInput.h"
 #include "CColliderLine.h"
-
+#include "CCollider.h"
 /*
 プレイヤークラス
 キャラクタクラスを継承
 */
 class CPlayer : public CCharacter3 {
 public:
+	//衝突処理
+	void Collision(CCollider* m, CCollider* o);
 	CPlayer::CPlayer()
 		: mLine(this, &mMatrix, CVector(0.0f, 0.0f, -14.0f), CVector(0.0f, 0.0f, 17.0f))
 		, mLine2(this, &mMatrix, CVector(0.0, 5.0, -8.0), CVector(0.0, -3.0, -8.0))
