@@ -7,6 +7,7 @@
 #include "CCollisionManager.h"
 #include "CBillBoard.h"
 #include "CColliderTriangle.h"
+#include "CColliderMesh.h"
 //OpenGL
 #include "glut.h"
 
@@ -16,7 +17,7 @@ CCharacterManager CApplication::mCharacterManager;
 
 //敵輸送機モデル
 #define MODEL_C5 "res\\c5.obj", "res\\c5.mtl"
-//背景モデルデータの指定
+//背景モデルデータの指定dd
 #define MODEL_BACKGROUND  "res\\sky.obj", "res\\sky.mtl"
 #define SOUND_BGM "res\\mario.wav" //BGM音声ファイル
 #define SOUND_OVER "res\\mdai.wav" //ゲームオーバー音声ファイル
@@ -43,7 +44,7 @@ CTexture* CApplication::Texture()
 void CApplication::Start()
 {
 	//三角コライダの確認
-	mColliderTriangle.Set(nullptr, nullptr
+	/*mColliderTriangle.Set(nullptr, nullptr
 		, CVector(-50.0f, 0.0f, -50.0f)
 		, CVector(-50.0f, 0.0f, 50.0f)
 		, CVector(50.0f, 0.0f, -50.0f));
@@ -51,6 +52,7 @@ void CApplication::Start()
 		, CVector(50.0f, 0.0f, 50.0f)
 		, CVector(50.0f, 0.0f, -50.0f)
 		, CVector(-50.0f, 0.0f, 50.0f));
+		*/
 	//ビルボードの生成
 	new CBillBoard(CVector(-6.0f, 3.0f, -10.0f), 1.0f, 1.0f);
 	CMatrix matrix;
@@ -62,9 +64,12 @@ void CApplication::Start()
 	//C5モデルの読み込み
 	mModelC5.Load(MODEL_C5);
 	mPlayer.Model(&mModel);
-	mPlayer.Position(CVector(0.0f, 0.0f, -3.0f));
+	mPlayer.Position(CVector(10.0f, 0.0f, -3.0f));
 	mPlayer.Rotation(CVector(0.0f, 180.0f, 0.0f));
 	mPlayer.Scale(CVector(0.1f, 0.1f, 0.1f));
+	//背景モデルから三角コライダを生成
+	//親インスタンスと親行列はなし
+	mColliderMesh.Set(nullptr, nullptr, &mBackGround);
 	//敵機のインスタンス作成
 	new CEnemy(&mModelC5, CVector(0.0f, 10.0f, -100.0f),
 		CVector(), CVector(0.1f, 0.1f, 0.1f));
