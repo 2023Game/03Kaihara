@@ -1,5 +1,6 @@
 #ifndef CEFFECT_H
 #define CEFFECT_H
+#define PRIORITY 100 //優先度
 //ビルボードクラスのインクルード
 #include "CBillBoard.h"
 /*

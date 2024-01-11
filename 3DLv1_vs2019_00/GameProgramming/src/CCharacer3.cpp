@@ -24,3 +24,9 @@ CCharacter3::CCharacter3()
 	CTaskManager::Instance()->Add(this);
 }
 
+CCharacter3::CCharacter3(int priority)
+	:mpModel(nullptr)
+{
+	mPriority = priority;
+	CTaskManager::Instance()->Add(this);
+}
