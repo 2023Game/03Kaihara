@@ -1,4 +1,5 @@
 #include "CBullet.h"
+#include "CCollider.h"
 #define VELOCITY CVector(0.0f, 0.0f, 0.1f) //ˆÚ“®‘¬“x
 
 

@@ -10,6 +10,8 @@ class CTask {
 	friend CCollisionManager;
 	friend CTaskManager;
 public:
+	//衝突処理
+	virtual void Collision() {}
 	//デフォルトコンストラクタ
 	CTask()
 		: mpNext(nullptr), mpPrev(nullptr), mPriority(0), mEnabled(true) {}
@@ -26,7 +28,4 @@ private:
 	CTask* mpNext;//次のポインタ
 	CTask* mpPrev;//前のポインタ
 };
-
 #endif
-
-

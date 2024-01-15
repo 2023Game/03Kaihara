@@ -51,5 +51,4 @@ void CEnemy::Collision(CCollider* m, CCollider* o) {
 		}
 		break;
 	}
-
 }

@@ -2,11 +2,6 @@
   CBillBoard.cpp
   CBullet.cpp
   CCharacer3.cpp
-  CCollider.cpp
-  CColliderLine.cpp
-  CColliderMesh.cpp
-  CColliderTriangle.cpp
-  CCollisionManager.cpp
   CEnemy.cpp
   CEnemy2.cpp
   CGame.cpp

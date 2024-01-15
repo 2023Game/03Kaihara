@@ -5,11 +5,24 @@
 #include "CInput.h"
 #include "CColliderLine.h"
 #include "CCollider.h"
+#include "CCollisionManager.h"
 /*
 プレイヤークラス
 キャラクタクラスを継承
 */
 class CPlayer : public CCharacter3 {
+	//衝突処理
+	void CPlayer::Collision()
+	{
+		//コライダの優先度変更
+		mLine.ChangePriority();
+		mLine2.ChangePriority();
+		mLine3.ChangePriority();
+		//衝突処理を実行
+		CCollisionManager::Instance()->Collision(&mLine, COLLISIONRANGE);
+		CCollisionManager::Instance()->Collision(&mLine2, COLLISIONRANGE);
+		CCollisionManager::Instance()->Collision(&mLine3, COLLISIONRANGE);
+	}
 public:
 	//衝突処理
 	void Collision(CCollider* m, CCollider* o);

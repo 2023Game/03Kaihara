@@ -5,13 +5,21 @@
 //三角形クラスのインクルード
 #include "CTriangle.h"
 #include "CCollider.h"
-
+#include "CCollisionManager.h"
 /*
 弾クラス
 三角形を飛ばす
 */
-class CBullet : public CCharacter3 {
+class CBullet : public CCharacter3{
 public:
+	//衝突処理
+	void CBullet::Collision()
+	{
+		//コライダの優先度変更
+		mCollider1.ChangePriority();
+		//衝突処理を実行
+		CCollisionManager::Instance()->Collision(&mCollider1, COLLISIONRANGE);
+	}
 	//衝突処理
 	//Collision(コライダ1, コライダ2)
 	void Collision(CCollider* m, CCollider* o);

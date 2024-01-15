@@ -73,4 +73,8 @@ void CPlayer::Collision(CCollider* m, CCollider* o) {
 		}
 		break;
 	}
+	//UIÝ’è
+	CApplication::Ui()->PosY(mPosition.Y());
+	CApplication::Ui()->RotX(mRotation.X());
+	CApplication::Ui()->RotY(mRotation.Y());
 }

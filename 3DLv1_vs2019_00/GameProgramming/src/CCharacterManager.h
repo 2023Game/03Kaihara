@@ -1,6 +1,9 @@
 #pragma once
 #include "CCharacter.h"
 #include <vector>
+//衝突処理範囲より離れているコライダは衝突処理しない
+#define COLLISIONRANGE 30
+
 /*
 * CCharacterクラスのインスタンスを管理する
 */

@@ -43,6 +43,7 @@ CTexture* CApplication::Texture()
 
 void CApplication::Start()
 {
+	spUi = new CUi();	//UIクラスの生成
 	//三角コライダの確認
 	/*mColliderTriangle.Set(nullptr, nullptr
 		, CVector(-50.0f, 0.0f, -50.0f)
@@ -82,7 +83,7 @@ void CApplication::Update() {
 	//タスクマネージャの更新
 	CTaskManager::Instance()->Update();
 	//コリジョンマネージャの衝突処理
-	CCollisionManager::Instance()->Collision();
+	CTaskManager::Instance()->Collision();
 
 	//頂点1、頂点2、頂点3、法線データの作成
 	CVector v0, v1, v2, n;
@@ -120,4 +121,18 @@ void CApplication::Update() {
 	//タスクマネージャの描画
 	CTaskManager::Instance()->Render();
 	CCollisionManager::Instance()->Render();
+	spUi->Render();	//UIの描画
+
+}
+
+CUi* CApplication::spUi = nullptr;
+
+CUi* CApplication::Ui()
+{
+	return spUi;	//インスタンスのポインタを返す
+}
+
+CApplication::~CApplication()
+{
+	delete spUi;	//インスタンスUiの削除
 }
