@@ -43,6 +43,7 @@ CTexture* CApplication::Texture()
 
 void CApplication::Start()
 {
+
 	spUi = new CUi();	//UIクラスの生成
 	//三角コライダの確認
 	/*mColliderTriangle.Set(nullptr, nullptr
@@ -54,6 +55,7 @@ void CApplication::Start()
 		, CVector(50.0f, 0.0f, -50.0f)
 		, CVector(-50.0f, 0.0f, 50.0f));
 		*/
+
 	//ビルボードの生成
 	new CBillBoard(CVector(-6.0f, 3.0f, -10.0f), 1.0f, 1.0f);
 	CMatrix matrix;
@@ -76,6 +78,9 @@ void CApplication::Start()
 		CVector(), CVector(0.1f, 0.1f, 0.1f));
 	new CEnemy(&mModelC5, CVector(30.0f, 10.0f, -130.0f),
 		CVector(), CVector(0.1f, 0.1f, 0.1f));
+	new CEnemy3(CVector(-5.0f, 1.0f, -10.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+	new CEnemy3(CVector(5.0f, 1.0f, -10.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+
 }
 
 void CApplication::Update() {

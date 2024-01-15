@@ -12,14 +12,7 @@
 */
 class CBullet : public CCharacter3{
 public:
-	//衝突処理
-	void CBullet::Collision()
-	{
-		//コライダの優先度変更
-		mCollider1.ChangePriority();
-		//衝突処理を実行
-		CCollisionManager::Instance()->Collision(&mCollider1, COLLISIONRANGE);
-	}
+	void Collision();
 	//衝突処理
 	//Collision(コライダ1, コライダ2)
 	void Collision(CCollider* m, CCollider* o);
