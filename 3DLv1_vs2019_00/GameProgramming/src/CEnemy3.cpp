@@ -57,15 +57,18 @@ void CEnemy3::Update()
 			//YŽ²‚ÌƒYƒŒ‚ª2.0ˆÈ‰º
 			if (-2.0f < dy && dy < 2.0f)
 			{
-				if (dx * dy * dz <= 30)
+				if (dz > -2.0f)
 				{
-					//’e‚ð”­ŽË‚µ‚Ü‚·
-					CBullet* bullet = new CBullet();
-					bullet->Set(0.1f, 1.5f);
-					bullet->Position(
-					CVector(0.0f, 0.0f, 10.0f) * mMatrix);
-					bullet->Rotation(mRotation);
-					bullet->Update();
+					if (dx * dy * dz <= 30)
+					{
+						//’e‚ð”­ŽË‚µ‚Ü‚·
+						CBullet* bullet = new CBullet();
+						bullet->Set(0.1f, 1.5f);
+						bullet->Position(
+							CVector(0.0f, 0.0f, 10.0f) * mMatrix);
+						bullet->Rotation(mRotation);
+						bullet->Update();
+					}
 				}
 			}
 		}
