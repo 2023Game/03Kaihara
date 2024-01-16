@@ -5,6 +5,7 @@
 ベクトルクラス
 ベクトルデータを扱います
 */
+class CVector;
 class CVector {
 public:
 	//正規化

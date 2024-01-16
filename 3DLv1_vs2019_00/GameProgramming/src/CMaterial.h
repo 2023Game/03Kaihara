@@ -4,7 +4,7 @@
 #define CMATERIAL_H
 #define MATERIAL_NAME_LEN 64 //名前の長さ
 #include "CTexture.h"
-
+#include "CVector.h"
 /*
 マテリアルクラス
 マテリアルのデータを扱う
