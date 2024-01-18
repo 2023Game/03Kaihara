@@ -6,7 +6,8 @@
 
 #define OBJ "res\\f16.obj"	//モデルのファイル
 #define MTL "res\\f16.mtl"	//モデルのマテリアルファイル
-#define HP 3 //耐久値
+#define HP 3				//耐久値
+#define VELOCITY 0.11f		//速度
 
 CModel CEnemy3::sModel;	//モデルデータ作成
 
@@ -88,6 +89,52 @@ void CEnemy3::Update()
 		mPosition = mPosition - CVector(0.0f, 0.03f, 0.0f);
 		CTransform::Update();
 		return;
+	}
+	//目標地点までのベクトルを求める
+	CVector vp = mPoint - mPosition;
+	//左ベクトルとの内積を求める
+	float dx = vp.Dot(mMatrixRotate.VectorX());
+	//上ベクトルとの内積を求める
+	float dy = vp.Dot(mMatrixRotate.VectorY());
+	const float margin = 0.1f;
+	//左右方向へ回転
+	if (dx > margin)
+	{
+		//左へ回転
+		mRotation = mRotation + CVector(0.0f, 1.0f, 0.0f);
+	}
+	else if (dx < -margin)
+	{
+		//右へ回転
+		mRotation = mRotation + CVector(0.0f, -1.0f, 0.0f);
+	}
+	//左右方向へ回転
+	if (dy > margin)
+	{
+		//上へ回転
+		mRotation = mRotation + CVector(-1.0f, 0.0f, 0.0f);
+	}
+	else if (dy < -margin)
+	{
+		//下へ回転
+		mRotation = mRotation + CVector(1.0f, 0.0f, 0.0f);
+	}
+	//機体前方に移動する
+	mPosition = mPosition + mMatrixRotate.VectorZ() * VELOCITY;
+	CTransform::Update(); //行列更新
+	//およそ3秒ごとに目標地点を更新
+	int r = rand() % 180; //rand()は整数の乱数を返す
+	                      //% 180 は180で割った余りを返す
+	if (r == 0)
+	{
+		if (player != nullptr)
+		{
+			mPoint = player->Position();
+		}
+		else
+		{
+			mPoint = mPoint * CMatrix().RotateY(45);
+		}
 	}
 }
 
