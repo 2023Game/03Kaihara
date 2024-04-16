@@ -42,7 +42,7 @@ void CBillBoard::Render(CMaterial* mpMaterial)
 	//行列の保存
 	glPushMatrix();
 	//拡縮、回転、移動させる
-	glMultMatrixf((CApplication::ModelViewInverse() * mMatrix).M());
+	//glMultMatrixf((CApplication::ModelViewInverse() * mMatrix).M());
 
 	//ライトオフ
 	glDisable(GL_LIGHTING);
