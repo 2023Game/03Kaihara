@@ -60,18 +60,9 @@ void CModelX::Load(char* file) {
 	//最後に\0を設定する（文字列の終端）
 	buf[size] = '\0';
 	fclose(fp);	//ファイルをクローズする
+	printf("%s\n", buf);
 
-
-	//文字列の最後まで繰り返し
-	while (*mpPointer != '\0') {
-		GetToken();	//単語の取得
-		//単語がFrameの場合
-		if (strcmp(mToken, "Frame") == 0 || strcmp(mToken, "AnimationSet") == 0) {
-			printf("%s ", mToken);	//Frame出力
-			GetToken();	//Frame名を取得
-			printf("%s\n", mToken); //Frame名を出力
-		}
-	}
+	
 
 	SAFE_DELETE_ARRAY(buf);	//確保した領域を開放する
 }
