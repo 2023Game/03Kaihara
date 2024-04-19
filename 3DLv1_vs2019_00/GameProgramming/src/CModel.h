@@ -32,5 +32,4 @@ private:
 	std::vector<CMaterial*> mpMaterials;
 
 };
-
 #endif
