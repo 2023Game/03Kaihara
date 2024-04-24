@@ -57,7 +57,7 @@ public:
 	//デストラクタ
 	~CMesh();
 	//読み込み処理
-	//void Init(CModelX* model);
+	void Init(CModelX* model);
 private:
 	int mVertexNum;	//頂点数
 	CVector* mpVertex;	//頂点データ

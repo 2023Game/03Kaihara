@@ -45,13 +45,11 @@ public:
 	//Zの値を得る
 	float Z() const;
 	//Xの値を得る
-	/*
-	void X(float) const;
+	void X(float);
 	//Yの値を得る
-	void Y(float) const;
+	void Y(float);
 	//Zの値を得る
-	void Z(float) const;
-	*/
+	void Z(float);
 private:
 	//3D各軸での値を設定
 	float mX, mY, mZ;
