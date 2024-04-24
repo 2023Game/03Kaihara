@@ -211,10 +211,13 @@ CModelXFrame::CModelXFrame(CModelX* model)
 	//デバッグバージョンのみ有効
 #ifdef _DEBUG
 	printf("%s\n", mpName);
-	for (int j = 0; j < 4; j++)
+	for (int i = 0; i < mTransformMatrix.Size() / 4; i++)
 	{
-		for (int i = 0; i < mTransformMatrix.Size() / 4; i++) printf("%f ", mTransformMatrix.M()[i * (j * 4)]);
-		printf("\n");
+		for (int j = 0; j < 4; j++)
+		{
+			printf("%f ", mTransformMatrix.M()[j * 4 + i]);
+		}
+			printf("\n");
 	}
 #endif
 }
