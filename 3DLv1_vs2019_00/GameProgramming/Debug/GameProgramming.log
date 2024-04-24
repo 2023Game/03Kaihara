@@ -1,2 +1,6 @@
 ﻿  CModelX.cpp
+C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CModelX.cpp(229,2): warning C4150: 'CVector' 型を削除するため delete 演算子が呼び出されましたが、定義がありません。
+  C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.h(7,7):
+  'CVector' の宣言を確認してください
+  
   GameProgramming.vcxproj -> C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\Debug\GameProgramming.exe

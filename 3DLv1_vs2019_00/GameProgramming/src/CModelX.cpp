@@ -195,7 +195,7 @@ CModelXFrame::CModelXFrame(CModelX* model)
 			mChild.push_back(
 				new CModelXFrame(model));
 		}
-		else if (strcmp(model->mToken, "FrameTransformMatrix"))
+		else if (strcmp(model->mToken, "FrameTransformMatrix") == 0)
 		{
 			model->GetToken(); // {
 			for (int i = 0; i < mTransformMatrix.Size(); i++) {
@@ -211,6 +211,26 @@ CModelXFrame::CModelXFrame(CModelX* model)
 	//デバッグバージョンのみ有効
 #ifdef _DEBUG
 	printf("%s\n", mpName);
-	for (int i = 0; i < mTransformMatrix.Size(); i++) printf("%f\n", mTransformMatrix.M()[i]);
+	for (int j = 0; j < 4; j++)
+	{
+		for (int i = 0; i < mTransformMatrix.Size() / 4; i++) printf("%f ", mTransformMatrix.M()[i * (j * 4)]);
+		printf("\n");
+	}
 #endif
 }
+
+//コンストラクタ
+CMesh::CMesh()
+	: mVertexNum(0)
+	, mpVertex(nullptr)
+{}
+//デストラクタ
+CMesh::~CMesh() {
+	SAFE_DELETE_ARRAY(mpVertex);
+}
+
+char* CModelX::Token()
+{
+	return mToken;
+}
+
