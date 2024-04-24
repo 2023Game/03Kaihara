@@ -215,7 +215,7 @@ CModelXFrame::CModelXFrame(CModelX* model)
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			printf("%f ", mTransformMatrix.M()[j * 4 + i]);
+			printf("%f ", mTransformMatrix.M()[i * 4 + j]);
 		}
 			printf("\n");
 	}
