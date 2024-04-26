@@ -270,13 +270,10 @@ void CMesh::Init(CModelX* model) {
 	}
 	//デバッグバージョンのみ有効
 #ifdef _DEBUG
-	printf("VertexNum:");
-	printf("%i", mVertexNum);
+	printf("VertexNum:%d\n", mVertexNum);
 	for (int i = 0; i < mVertexNum; i++) 
 	{
-		printf("%f\n", mpVertex[i].X());
-		printf("%f", mpVertex[i].Y());
-		printf("%f", mpVertex[i].Z());
+		printf("%10f %10f %10f\n", mpVertex[i].X(), mpVertex[i].Y(), mpVertex[i].Z());
 	}
 	printf("\n");
 #endif
