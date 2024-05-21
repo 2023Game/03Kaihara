@@ -5,6 +5,7 @@
 class CModelX;		// CModelXクラスの宣言
 class CModelXFrame;	// CModelXFrameクラスの宣言
 class CMesh;		// Cmexhクラスの宣言
+class CMaterial;
 #define MODEL_FILE "res\\sample.blend.x"	//入力ファイル名 \は￥
 
 //領域解放をマクロ化
@@ -16,6 +17,7 @@ class CMesh;		// Cmexhクラスの宣言
 class CModelX {
 	friend CModelXFrame;
 public:
+	bool EOT(); //トークンが無くなったらtrue
 	void Render();
 	char* Token();
 	~CModelX();
@@ -62,6 +64,10 @@ public:
 	//読み込み処理
 	void Init(CModelX* model);
 private:
+	int mMaterialNum;	//マテリアル数
+	int mMaterialIndexNum;//マテリアル番号数（面数）
+	int* mpMaterialIndex;	  //マテリアル番号
+	std::vector<CMaterial*> mMaterial;//マテリアルデータ
 	int mNormalNum;	//法線数
 	CVector* mpNormal;//法線ベクトル
 	int mFaceNum;	//面数
