@@ -383,21 +383,18 @@ void CMesh::Render()
 	glVertexPointer(3, GL_FLOAT, 0, mpVertex);
 	glNormalPointer(GL_FLOAT, 0, mpNormal);
 	/* 頂点のインデックスの場所を指定して図形を描画する */
-	glDrawElements(GL_TRIANGLES, 3 * mFaceNum,
-		GL_UNSIGNED_INT, mpVertexIndex);
-
-
-	/* 頂点データ，法線データの配列を無効にする */
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_NORMAL_ARRAY);
-
-	/* 頂点のインデックスの場所を指定して図形を描画する */
+		/* 頂点のインデックスの場所を指定して図形を描画する */
 	for (int i = 0; i < mFaceNum; i++) {
 		//マテリアルを適用する
 		mMaterial[mpMaterialIndex[i]]->Enabled();
 		glDrawElements(GL_TRIANGLES, 3,
 			GL_UNSIGNED_INT, (mpVertexIndex + i * 3));
 	}
+
+
+	/* 頂点データ，法線データの配列を無効にする */
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_NORMAL_ARRAY);
 }
 
 /*
