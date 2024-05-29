@@ -173,8 +173,8 @@ void CModelX::SkipNode() {
 */
 CModelXFrame::CModelXFrame(CModelX* model)
 	: mpName(nullptr)
-	, mpMesh(nullptr)
 	, mIndex(0)
+	, mpMesh(nullptr)
 {
 	//現在のフレーム配列の要素数を取得し設定する
 	mIndex = model->mFrame.size();
