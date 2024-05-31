@@ -8,6 +8,7 @@ class CMesh;		// Cmexhクラスの宣言
 class CMaterial;
 class CSkinWeights;	//スキンウェイトクラス
 class CAnimationSet; //アニメーションセットクラス
+class CAnimation; //アニメーションクラス
 #define MODEL_FILE "res\\sample.blend.x"	//入力ファイル名 \は￥
 
 //領域解放をマクロ化
@@ -19,7 +20,10 @@ class CAnimationSet; //アニメーションセットクラス
 class CModelX {
 	friend CModelXFrame;
 	friend CAnimationSet;
+	friend CAnimation;
 public:
+	//フレーム名に該当するフレームのアドレスを返す
+	CModelXFrame* FindFrame(char* name);
 	bool EOT(); //トークンが無くなったらtrue
 	void Render();
 	char* Token();
@@ -44,7 +48,9 @@ private:
 //CModelXFrameクラスの定義
 class CModelXFrame {
 	friend CModelX;
+	friend CAnimation;
 public:
+	int Index();
 	void Render();
 	//コンストラクタ
 	CModelXFrame(CModelX* model);
@@ -113,10 +119,25 @@ public:
 	CAnimationSet(CModelX* model);
 	~CAnimationSet();
 private:
+	//アニメーション
+	std::vector<CAnimation*> mAnimation;
 	//アニメーションセット名
 	char* mpName;
 };
 
+/*
+CAnimation
+アニメーションクラス
+*/
+class CAnimation {
+	friend CAnimationSet;
+public:
+	CAnimation(CModelX* model);
+	~CAnimation();
+private:
+	char* mpFrameName;//フレーム名
+	int mFrameIndex;	//フレーム番号
+};
 
 #endif
 
