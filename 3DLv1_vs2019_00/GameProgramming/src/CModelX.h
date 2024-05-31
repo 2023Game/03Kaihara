@@ -78,6 +78,7 @@ private:
 	int mVertexNum;	//頂点数
 	CVector* mpVertex;	//頂点データ
 };
+
 /*
  CSkinWeights
  スキンウェイトクラス
@@ -88,8 +89,8 @@ class CSkinWeights {
 public:
 	CSkinWeights(CModelX* model);
 	~CSkinWeights();
-	//const int& FrameIndex();
-	//const CMatrix& Offset();
+	const int& FrameIndex();
+	const CMatrix& Offset();
 private:
 	char* mpFrameName;	//フレーム名
 	int mFrameIndex;	//フレーム番号
@@ -98,6 +99,7 @@ private:
 	float* mpWeight;	//頂点ウェイト配列
 	CMatrix mOffset;	//オフセットマトリックス
 };
+
 #endif
 
 
