@@ -7,6 +7,7 @@ class CModelXFrame;	// CModelXFrameクラスの宣言
 class CMesh;		// Cmexhクラスの宣言
 class CMaterial;
 class CSkinWeights;	//スキンウェイトクラス
+class CAnimationSet; //アニメーションセットクラス
 #define MODEL_FILE "res\\sample.blend.x"	//入力ファイル名 \は￥
 
 //領域解放をマクロ化
@@ -17,6 +18,7 @@ class CSkinWeights;	//スキンウェイトクラス
 */
 class CModelX {
 	friend CModelXFrame;
+	friend CAnimationSet;
 public:
 	bool EOT(); //トークンが無くなったらtrue
 	void Render();
@@ -30,6 +32,8 @@ public:
 	//単語の取り出し
 	char* GetToken();
 private:
+	//アニメーションセットの配列
+	std::vector<CAnimationSet*> mAnimationSet;
 	std::vector<CModelXFrame*> mFrame;  //フレームの配列
 	char* mpPointer;	//読み込み位置
 	char mToken[1024];	//取り出した単語の領域
@@ -99,6 +103,20 @@ private:
 	float* mpWeight;	//頂点ウェイト配列
 	CMatrix mOffset;	//オフセットマトリックス
 };
+
+/*
+ CAnimationSet
+ アニメーションセット
+*/
+class CAnimationSet {
+public:
+	CAnimationSet(CModelX* model);
+	~CAnimationSet();
+private:
+	//アニメーションセット名
+	char* mpName;
+};
+
 
 #endif
 
