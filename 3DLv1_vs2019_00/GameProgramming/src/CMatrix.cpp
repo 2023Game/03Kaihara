@@ -202,6 +202,7 @@ CMatrix CMatrix::operator*(const float& x) const
 	return tmp;
 }
 
+
 CMatrix CMatrix::operator+(const CMatrix& m) const
 {
 	CMatrix tmp;
@@ -224,24 +225,4 @@ void CMatrix::operator+=(const CMatrix& m)
 			mM[i][j] += m.mM[i][j];
 		}
 	}
-}
-
-void CMatrix::operator+=(const CMatrix& m) {
-	CMatrix ope;
-	mM[0][0] += m.mM[0][0];
-	mM[0][1] += m.mM[0][1];
-	mM[0][2] += m.mM[0][2];
-	mM[0][3] += m.mM[0][3];
-	mM[1][0] += m.mM[1][0];
-	mM[1][0] += m.mM[1][1];
-	mM[1][0] += m.mM[1][2];
-	mM[1][0] += m.mM[1][3];
-	mM[2][0] += m.mM[2][0];
-	mM[2][0] += m.mM[2][1];
-	mM[2][0] += m.mM[2][2];
-	mM[2][0] += m.mM[2][3];
-	mM[3][0] += m.mM[3][0];
-	mM[3][0] += m.mM[3][1];
-	mM[3][0] += m.mM[3][2];
-	mM[3][0] += m.mM[3][3];
 }
