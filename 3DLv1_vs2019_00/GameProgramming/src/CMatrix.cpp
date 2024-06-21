@@ -189,48 +189,41 @@ CMatrix CMatrix::Quaternion(float x, float y, float z, float w) {
 	return *this;
 }
 
-CMatrix CMatrix::operator*(const float &x) const
+CMatrix CMatrix::operator*(const float& x) const
 {
-	CMatrix ope;
-	ope.mM[0][0] = mM[0][0] * x;
-	ope.mM[0][1] = mM[0][1] * x;
-	ope.mM[0][2] = mM[0][2] * x;
-	ope.mM[0][3] = mM[0][3] * x;
-	ope.mM[1][0] = mM[1][0] * x;
-	ope.mM[1][0] = mM[1][1] * x;
-	ope.mM[1][0] = mM[1][2] * x;
-	ope.mM[1][0] = mM[1][3] * x;
-	ope.mM[2][0] = mM[2][0] * x;
-	ope.mM[2][0] = mM[2][1] * x;
-	ope.mM[2][0] = mM[2][2] * x;
-	ope.mM[2][0] = mM[2][3] * x;
-	ope.mM[3][0] = mM[3][0] * x;
-	ope.mM[3][0] = mM[3][1] * x;
-	ope.mM[3][0] = mM[3][2] * x;
-	ope.mM[3][0] = mM[3][3] * x;
-	return ope;
+	CMatrix tmp;
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			tmp.mM[i][j] = mM[i][j] * x;
+		}
+	}
+	return tmp;
 }
 
 CMatrix CMatrix::operator+(const CMatrix& m) const
 {
-	CMatrix ope;
-	ope.mM[0][0] = m.mM[0][0] + mM[0][0];
-	ope.mM[0][1] = m.mM[0][1] + mM[0][1];
-	ope.mM[0][2] = m.mM[0][2] + mM[0][2];
-	ope.mM[0][3] = m.mM[0][3] + mM[0][3];
-	ope.mM[1][0] = m.mM[1][0] + mM[1][0];
-	ope.mM[1][0] = m.mM[1][1] + mM[1][1];
-	ope.mM[1][0] = m.mM[1][2] + mM[1][2];
-	ope.mM[1][0] = m.mM[1][3] + mM[1][3];
-	ope.mM[2][0] = m.mM[2][0] + mM[2][0];
-	ope.mM[2][0] = m.mM[2][1] + mM[2][1];
-	ope.mM[2][0] = m.mM[2][2] + mM[2][2];
-	ope.mM[2][0] = m.mM[2][3] + mM[2][3];
-	ope.mM[3][0] = m.mM[3][0] + mM[3][0];
-	ope.mM[3][0] = m.mM[3][1] + mM[3][1];
-	ope.mM[3][0] = m.mM[3][2] + mM[3][2];
-	ope.mM[3][0] = m.mM[3][3] + mM[3][3];
-	return ope;
+	CMatrix tmp;
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			tmp.mM[i][j] = mM[i][j] + m.mM[i][j];
+		}
+	}
+	return tmp;
+}
+
+void CMatrix::operator+=(const CMatrix& m)
+{
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			mM[i][j] += m.mM[i][j];
+		}
+	}
 }
 
 void CMatrix::operator+=(const CMatrix& m) {
