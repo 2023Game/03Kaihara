@@ -197,7 +197,8 @@ void CModelX::SkipNode() {
 AnimateFrame
 フレームの変換行列をアニメーションデータで更新する
 */
-void CModelX::AnimateFrame() {
+void CModelX::AnimateFrame() 
+{
 	//アニメーションで適用されるフレームの
 	//変換行列をゼロクリアする
 	for (size_t i = 0; i < mAnimationSet.size(); i++) {
@@ -225,9 +226,13 @@ void CModelX::AnimateFrame() {
 		if (animSet->mWeight == 0) continue;
 		animSet->AnimateMatrix(this);
 	}
-	//デバッグバージョンのみ有効
+//デバッグバージョンのみ
 #ifdef _DEBUG
-
+	for (size_t i = 0; i < mFrame.size(); i++)
+	{
+		printf("Frame:%s\n", mFrame[i]->mpName);
+		mFrame[i]->mTransformMatrix.Print();
+	}
 #endif
 }
 
