@@ -1,32 +1,6 @@
-﻿  CApplication.cpp
-  CBillBoard.cpp
-  CBullet.cpp
-  CCharacer3.cpp
-  CColliderMesh.cpp
-  CCollisionManager.cpp
-  CEffect.cpp
-  CEnemy.cpp
-  CEnemy3.cpp
-  CMaterial.cpp
-  CCollider.cpp
-  main.cpp
-  コードを生成中...
-LINK : warning LNK4098: defaultlib 'MSVCRT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
-LINK : warning LNK4098: defaultlib 'LIBCMT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
-CTransform.obj : warning LNK4099: PDB '' が 'CTransform.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CMatrix.obj : warning LNK4099: PDB '' が 'CMatrix.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CVector.obj : warning LNK4099: PDB '' が 'CVector.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CUi.obj : warning LNK4099: PDB '' が 'CUi.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CTriangle.obj : warning LNK4099: PDB '' が 'CTriangle.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CInput.obj : warning LNK4099: PDB '' が 'CInput.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CTexture.obj : warning LNK4099: PDB '' が 'CTexture.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CTaskManager.obj : warning LNK4099: PDB '' が 'CTaskManager.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CSound.obj : warning LNK4099: PDB '' が 'CSound.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CPlayer.obj : warning LNK4099: PDB '' が 'CPlayer.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CModelX.obj : warning LNK4099: PDB '' が 'CModelX.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CModel.obj : warning LNK4099: PDB '' が 'CModel.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CFont.obj : warning LNK4099: PDB '' が 'CFont.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CColliderTriangle.obj : warning LNK4099: PDB '' が 'CColliderTriangle.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CColliderLine.obj : warning LNK4099: PDB '' が 'CColliderLine.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CCamera.obj : warning LNK4099: PDB '' が 'CCamera.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+﻿  CMatrix.cpp
+C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(46,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(50,27): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(61,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(76,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
   GameProgramming.vcxproj -> C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\Debug\GameProgramming.exe
