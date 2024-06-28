@@ -8,6 +8,9 @@
 class CVector;
 class CVector {
 public:
+	//+=演算子のオーバーロード
+	//CVector1 += CVector2 の演算を行う
+	void operator+=(const CVector& v);
 	//正規化
 	//大きさ1のベクトルを返す
 	CVector Normalize() const;

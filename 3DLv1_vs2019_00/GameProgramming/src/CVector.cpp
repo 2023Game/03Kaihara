@@ -1,6 +1,14 @@
 #include "CVector.h"
 #include "math.h"
 
+
+void CVector::operator+=(const CVector& v)
+{
+	mX += v.mX;
+	mY += v.mY;
+	mZ += v.mZ;
+}
+
 //Set(Xç¿ïW, Yç¿ïW, Zç¿ïW)
 void CVector::Set(float x, float y, float z)
 {

@@ -78,7 +78,8 @@ void CModelX::Load(char* file) {
 			new CAnimationSet(this);
 		}
 	}
-
+	//スキンウェイトのフレーム番号設定
+	SetSkinWeightFrameIndex();
 	SAFE_DELETE_ARRAY(buf);	//確保した領域を開放する
 }
 
@@ -240,6 +241,22 @@ void CModelX::AnimateFrame()
 #endif
 }
 
+/*
+AnimateVertex
+頂点にアニメーションを適用する
+*/
+void CModelX::AnimateVertex() {
+	//フレーム数分繰り返し
+	for (size_t i = 0; i < mFrame.size(); i++) {
+		//メッシュに面があれば
+		if (mFrame[i]->mpMesh != nullptr) {
+			//頂点をアニメーションで更新する
+			mFrame[i]->mpMesh->AnimateVertex(this);
+		}
+	}
+}
+
+
 
 /*
  CModelXFrame
@@ -327,6 +344,11 @@ void CModelXFrame::AnimateCombined(CMatrix* parent) {
 #endif
 }
 
+const CMatrix& CModelXFrame::CombinedMatrix()
+{
+	return mCombinedMatrix;
+}
+
 //コンストラクタ
 CMesh::CMesh()
 	: mVertexNum(0)
@@ -338,6 +360,8 @@ CMesh::CMesh()
 	, mMaterialNum(0)
 	, mMaterialIndexNum(0)
 	, mpMaterialIndex(nullptr)
+	, mpAnimateVertex(nullptr)
+	, mpAnimateNormal(nullptr)
 {}
 
 //デストラクタ
@@ -346,6 +370,8 @@ CMesh::~CMesh() {
 	SAFE_DELETE_ARRAY(mpVertexIndex);
 	SAFE_DELETE_ARRAY(mpNormal);
 	SAFE_DELETE_ARRAY(mpMaterialIndex);
+	SAFE_DELETE_ARRAY(mpAnimateVertex);
+	SAFE_DELETE_ARRAY(mpAnimateNormal);
 	//スキンウェイトの削除
 	for (size_t i = 0; i < mSkinWeights.size(); i++)
 	{
@@ -357,6 +383,17 @@ char* CModelX::Token()
 {
 	return mToken;
 }
+
+void CModelX::SetSkinWeightFrameIndex() {
+	//フレーム数分繰り返し
+	for (size_t i = 0; i < mFrame.size(); i++) {
+		//メッシュがあれば
+		if (mFrame[i]->mpMesh != nullptr) {
+			mFrame[i]->mpMesh->SetSkinWeightFrameIndex(this);
+		}
+	}
+}
+
 
 /*
  Init
@@ -373,6 +410,7 @@ void CMesh::Init(CModelX* model) {
 	mVertexNum = atoi(model->GetToken());
 	//頂点数分エリア確保
 	mpVertex = new CVector[mVertexNum];
+	mpAnimateVertex = new CVector[mVertexNum];
 	//頂点数分データを取り込む
 	for (int i = 0; i < mVertexNum; i++) {
 		mpVertex[i].X(atof(model->GetToken()));
@@ -410,7 +448,8 @@ void CMesh::Init(CModelX* model) {
 			mNormalNum = atoi(model->GetToken()) * 3; //FaceNum
 			int ni;
 			//頂点毎に法線データを設定する
-			mpNormal = new CVector[mNormalNum];
+			mpNormal = new CVector[mNormalNum]; 
+			mpAnimateNormal = new CVector[mNormalNum];
 			for (int i = 0; i < mNormalNum; i += 3) {
 				model->GetToken(); // 3
 				ni = atoi(model->GetToken());
@@ -488,9 +527,9 @@ void CMesh::Render()
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
 
-	/* 頂点データ，法線データの場所を指定する */
-	glVertexPointer(3, GL_FLOAT, 0, mpVertex);
-	glNormalPointer(GL_FLOAT, 0, mpNormal);
+	/* 頂点データ，法線データ，テクスチャ座標の場所を指定する */
+	glVertexPointer(3, GL_FLOAT, 0, mpAnimateVertex);
+	glNormalPointer(GL_FLOAT, 0, mpAnimateNormal);
 	/* 頂点のインデックスの場所を指定して図形を描画する */
 		/* 頂点のインデックスの場所を指定して図形を描画する */
 	for (int i = 0; i < mFaceNum; i++) {
@@ -505,6 +544,47 @@ void CMesh::Render()
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);
 }
+
+void CMesh::AnimateVertex(CModelX* model) {
+	//アニメーション用の頂点エリアクリア
+	memset(mpAnimateVertex, 0, sizeof(CVector) * mVertexNum);
+	memset(mpAnimateNormal, 0, sizeof(CVector) * mNormalNum);
+	//スキンウェイト分繰り返し
+	for (size_t i = 0; i < mSkinWeights.size(); i++) {
+		//フレーム番号取得
+		int frameIndex = mSkinWeights[i]->mFrameIndex;
+		//オフセット行列とフレーム合成行列を合成
+		CMatrix mSkinningMatrix = mSkinWeights[i]->mOffset * model->Frames()[frameIndex]->CombinedMatrix();
+		//頂点数分繰り返し
+		for (int j = 0; j < mSkinWeights[i]->mIndexNum; j++) {
+			//頂点番号取得
+			int index = mSkinWeights[i]->mpIndex[j];
+			//重み取得
+			float weight = mSkinWeights[i]->mpWeight[j];
+			//頂点と法線を更新する
+			mpAnimateVertex[index] += mpVertex[index] * mSkinningMatrix * weight;
+			mpAnimateNormal[index] += mpNormal[index] * mSkinningMatrix * weight;
+		}
+	}
+	//法線を正規化する
+	for (int i = 0; i < mNormalNum; i++) {
+		mpAnimateNormal[i] = mpAnimateNormal[i].Normalize();
+	}
+}
+
+
+void CMesh::SetSkinWeightFrameIndex(CModelX* model)
+{
+	//スキンウェイト分繰り返し
+	for (size_t i = 0; i < mSkinWeights.size(); i++) {
+		//フレーム名のフレームを取得する
+		CModelXFrame* frame = model->FindFrame(mSkinWeights[i]->mpFrameName);
+		//フレーム番号を設定する
+		mSkinWeights[i]->mFrameIndex = frame->Index();
+	}
+}
+
+
 
 /*
  Render
@@ -605,6 +685,8 @@ CAnimationSet::CAnimationSet(CModelX* model)
 			mAnimation.push_back(new CAnimation(model));
 		}
 	}
+	//終了時間設定
+	mMaxTime = mAnimation[0]->mpKey[mAnimation[0]->mKeyNum - 1].mTime;
 	//デバッグバージョンのみ有効
 #ifdef _DEBUG
 	printf("CAnimationSet %s\n", mpName);
@@ -670,6 +752,7 @@ void CAnimationSet::AnimateMatrix(CModelX* model)
 		}
 	}
 }
+
 
 std::vector<CAnimation*>& CAnimationSet::Animation()
 {
@@ -794,10 +877,22 @@ CAnimation::CAnimation(CModelX* model)
 #endif
 }
 
+float CAnimationSet::Time()
+{
+	return mTime;
+}
+
+
+float CAnimationSet::MaxTime()
+{
+	return mMaxTime;
+}
+
 CAnimation::~CAnimation() {
 	SAFE_DELETE_ARRAY(mpFrameName);
 	SAFE_DELETE_ARRAY(mpKey);
 }
+
 
 int CModelXFrame::Index()
 {
