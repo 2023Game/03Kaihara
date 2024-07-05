@@ -43,8 +43,10 @@ void CApplication::Update()
 	mModelX.AnimationSet()[0]->Time(
 		mModelX.AnimationSet()[0]->Time() + 1.0f);
 	//最初のアニメーションの重みを1.0（100%)にする
-	(int)mModelX.AnimationSet()[0]->Time() %
-		(int)(mModelX.AnimationSet()[0]->MaxTime() + 1);
+	mModelX.AnimationSet()[0]->Weight(1.0f);
+	mModelX.AnimationSet()[0]->Time(
+		(int)mModelX.AnimationSet()[0]->Time() %
+		(int)(mModelX.AnimationSet()[0]->MaxTime() + 1));
 	//フレームの変換行列をアニメーションで更新する
 	mModelX.AnimateFrame();
 	//フレームの合成行列を計算する

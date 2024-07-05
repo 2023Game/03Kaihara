@@ -1,6 +1,2 @@
-﻿  CMatrix.cpp
-C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(46,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(50,27): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(61,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
-C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\GameProgramming\src\CMatrix.cpp(76,12): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+﻿  CApplication.cpp
   GameProgramming.vcxproj -> C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\Debug\GameProgramming.exe
