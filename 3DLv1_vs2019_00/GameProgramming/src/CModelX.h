@@ -12,7 +12,7 @@ class CSkinWeights;	//スキンウェイトクラス
 class CAnimationSet; //アニメーションセットクラス
 class CAnimation; //アニメーションクラス
 class CAnimationKey;  //アニメーションキークラス
-#define MODEL_FILE "res\\sample.blend.x"	//入力ファイル名 \は￥
+#define MODEL_FILE "res\\ラグナ.x"	//入力ファイル名 \は￥
 
 //領域解放をマクロ化
 #define SAFE_DELETE_ARRAY(a) { if(a) delete[] a; a = nullptr;}
@@ -26,6 +26,10 @@ class CModelX {
 	friend CAnimation;
 	friend CMesh;
 public:
+	//マテリアル配列の取得
+	std::vector<CMaterial*>& Material();
+	//マテリアルの検索
+	CMaterial* FindMaterial(char* name);
 	//頂点にアニメーションを適用
 	void AnimateVertex();
 	//スキンウェイトのフレーム番号設定
@@ -53,6 +57,7 @@ public:
 		return mAnimationSet;
 	}
 private:
+	std::vector<CMaterial*> mMaterial;  //マテリアル配列
 	char* mpPointer;	//読み込み位置
 	char mToken[1024];	//取り出した単語の領域
 	//cが区切り文字ならtrueを返す

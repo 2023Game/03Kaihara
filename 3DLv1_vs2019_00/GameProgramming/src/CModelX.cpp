@@ -15,6 +15,8 @@
 
 bool CModelX::IsDelimiter(char c)
 {
+	if (c < 0)
+		return false;
 	//isspace(c)
 	//cが空白文字なら0以外を返す
 	if (isspace(c) != 0)
@@ -68,8 +70,16 @@ void CModelX::Load(char* file) {
 	//文字列の最後まで繰り返し
 	while (*mpPointer != '\0') {
 		GetToken();	//単語の取得
+		//template 読み飛ばし
+		if (strcmp(mToken, "template") == 0) {
+			SkipNode();
+		}
+		//Material の時
+		else if (strcmp(mToken, "Material") == 0) {
+			new CMaterial(this);
+		}
 		//単語がFrameの場合
-		if (strcmp(mToken, "Frame") == 0) {
+		else if (strcmp(mToken, "Frame") == 0) {
 			//フレームを作成する
 			new CModelXFrame(this);
 		}
@@ -123,6 +133,11 @@ char* CModelX::GetToken() {
 	return mToken;
 }
 
+std::vector<CMaterial*>& CModelX::Material()
+{
+	return mMaterial;
+}
+
 std::vector<CModelXFrame*>& CModelX::Frames()
 {
 	return mFrame;
@@ -174,6 +189,11 @@ CModelX::~CModelX()
 	{
 		delete mAnimationSet[i];
 	}
+	//マテリアルの解放
+	for (size_t i = 0; i < mMaterial.size(); i++) {
+		delete mMaterial[i];
+	}
+
 }
 
 /*
@@ -233,11 +253,7 @@ void CModelX::AnimateFrame()
 	}
 //デバッグバージョンのみ
 #ifdef _DEBUG
-	for (size_t i = 0; i < mFrame.size(); i++)
-	{
-		printf("Frame:%s\n", mFrame[i]->mpName);
-		mFrame[i]->mTransformMatrix.Print();
-	}
+
 #endif
 }
 
@@ -256,7 +272,19 @@ void CModelX::AnimateVertex() {
 	}
 }
 
-
+CMaterial* CModelX::FindMaterial(char* name) {
+	//マテリアル配列のイテレータ作成
+	std::vector<CMaterial*>::iterator itr;
+	//マテリアル配列を先頭から順に検索
+	for (itr = mMaterial.begin(); itr != mMaterial.end(); itr++) {
+		//名前が一致すればマテリアルのポインタを返却
+		if (strcmp(name, (*itr)->Name()) == 0) {
+			return *itr;
+		}
+	}
+	//無い時はnullptrを返却
+	return nullptr;
+}
 
 /*
  CModelXFrame
@@ -315,15 +343,7 @@ CModelXFrame::CModelXFrame(CModelX* model)
 	}
 	//デバッグバージョンのみ有効
 #ifdef _DEBUG
-	printf("%s\n", mpName);
-	for (int i = 0; i < mTransformMatrix.Size() / 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			printf("%f ", mTransformMatrix.M()[i * 4 + j]);
-		}
-			printf("\n");
-	}
+
 #endif
 }
 
@@ -339,8 +359,7 @@ void CModelXFrame::AnimateCombined(CMatrix* parent) {
 		mChild[i]->AnimateCombined(&mCombinedMatrix);
 	}
 #ifdef _DEBUG
-	printf("Frame::%s\n", mpName);
-	mCombinedMatrix.Print();
+
 #endif
 }
 
@@ -483,6 +502,14 @@ void CMesh::Init(CModelX* model) {
 				if (strcmp(model->Token(), "Material") == 0) {
 					mMaterial.push_back(new CMaterial(model));
 				}
+				else {
+					// {  既出
+					model->GetToken();	//MaterialName
+					mMaterial.push_back(
+						model->FindMaterial(model->Token()));
+					model->GetToken();	// }
+				}
+
 			}
 			model->GetToken();	// } //End of MeshMaterialList
 		} //End of MeshMaterialList
@@ -498,21 +525,7 @@ void CMesh::Init(CModelX* model) {
 	}
 	//デバッグバージョンのみ有効
 #ifdef _DEBUG
-	printf("NoemalNum:%d\n", mNormalNum);
-	for (int i = 0; i < mNormalNum; i++)
-	{
-		printf("%12f %12f %12f\n", mpNormal[i].X(), mpNormal[i].Y(), mpNormal[i].Z());
-	}
-	printf("VertexNum:%d\n", mVertexNum);
-	for (int i = 0; i < mVertexNum; i++) 
-	{
-		printf("%10f %10f %10f\n", mpVertex[i].X(), mpVertex[i].Y(), mpVertex[i].Z());
-	}
-	printf("FaceNum:%d\n", mFaceNum);
-	for (int i = 0; i < mVertexNum; i += 3)
-	{
-		printf("%4d %4d %4d \n" ,mpVertexIndex[i] , mpVertexIndex[i + 1] , mpVertexIndex[i + 2]);
-	}
+
 #endif
 
 }
