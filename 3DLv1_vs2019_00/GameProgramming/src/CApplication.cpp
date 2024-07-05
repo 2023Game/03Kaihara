@@ -41,8 +41,13 @@ void CApplication::Start()
 
 void CApplication::Update()
 {
-	//歩くアニメーションに切り替える
-	mCharacter.ChangeAnimation(1, true, 60);
+	if (mCharacter.IsAnimationFinished()) {
+		int Afr = mCharacter.AnimationIndex() + 1;
+		Afr %= mModelX.AnimationSet().size();
+		mCharacter.ChangeAnimation(Afr, true, 60);
+	}
+	//キャラクタークラスの更新
+	mCharacter.Update(CMatrix());
 
 	//キャラクタークラスの更新
 	mCharacter.Update(CMatrix());
