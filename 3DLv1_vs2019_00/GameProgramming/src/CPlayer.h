@@ -1,3 +1,4 @@
+
 #ifndef CPLAYER_H
 #define CPLAYER_H
 //キャラクタクラスのインクルード
@@ -6,10 +7,10 @@
 #include "CColliderLine.h"
 #include "CCollider.h"
 #include "CCollisionManager.h"
-/*
-プレイヤークラス
-キャラクタクラスを継承
-*/
+
+//プレイヤークラス
+//キャラクタクラスを継承
+
 class CPlayer : public CCharacter3 {
 public:
 	//インスタンスのポインタの取得
@@ -31,5 +32,6 @@ private:
 	CColliderLine mLine2; //線分コライダ
 	CColliderLine mLine3; //線分コライダ
 };
+
 
 #endif

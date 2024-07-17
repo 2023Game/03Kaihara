@@ -37,6 +37,7 @@
     <ClCompile Include="src\CUi.cpp" />
     <ClCompile Include="src\CVector.cpp" />
     <ClCompile Include="src\CXCharacter.cpp" />
+    <ClCompile Include="src\CXPlayer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\CMatrix.cpp" />
     <ClCompile Include="src\CTransform.cpp" />
@@ -70,6 +71,7 @@
     <ClInclude Include="src\CVector.h" />
     <ClInclude Include="src\CVertex.h" />
     <ClInclude Include="src\CXCharacter.h" />
+    <ClInclude Include="src\CXPlayer.h" />
     <ClInclude Include="src\main.h" />
     <ClInclude Include="src\CMatrix.h" />
     <ClInclude Include="src\CTransform.h" />

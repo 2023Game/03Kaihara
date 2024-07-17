@@ -23,7 +23,7 @@ CPlayer::CPlayer()
 CPlayer::CPlayer(const CVector& pos, const CVector& rot
 	, const CVector& scale)
 {
-	CTransform::Update(pos, rot, scale); //行列の更新
+	//CTransform::Update(pos, rot, scale); //行列の更新
 }
 
 //更新処理

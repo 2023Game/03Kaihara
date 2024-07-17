@@ -1,13 +1,23 @@
 ﻿  CApplication.cpp
 LINK : warning LNK4098: defaultlib 'MSVCRT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
 LINK : warning LNK4098: defaultlib 'LIBCMT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
+CMatrix.obj : warning LNK4099: PDB '' が 'CMatrix.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 CUi.obj : warning LNK4099: PDB '' が 'CUi.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
-CInput.obj : warning LNK4099: PDB '' が 'CInput.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CTriangle.obj : warning LNK4099: PDB '' が 'CTriangle.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 CTexture.obj : warning LNK4099: PDB '' が 'CTexture.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 CTaskManager.obj : warning LNK4099: PDB '' が 'CTaskManager.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 CSound.obj : warning LNK4099: PDB '' が 'CSound.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CModelX.obj : warning LNK4099: PDB '' が 'CModelX.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CCollider.obj : warning LNK4099: PDB '' が 'CCollider.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CModel.obj : warning LNK4099: PDB '' が 'CModel.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CMaterial.obj : warning LNK4099: PDB '' が 'CMaterial.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 CFont.obj : warning LNK4099: PDB '' が 'CFont.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CEnemy.obj : warning LNK4099: PDB '' が 'CEnemy.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CEffect.obj : warning LNK4099: PDB '' が 'CEffect.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CCollisionManager.obj : warning LNK4099: PDB '' が 'CCollisionManager.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 CColliderTriangle.obj : warning LNK4099: PDB '' が 'CColliderTriangle.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CColliderMesh.obj : warning LNK4099: PDB '' が 'CColliderMesh.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 CColliderLine.obj : warning LNK4099: PDB '' が 'CColliderLine.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
 CCamera.obj : warning LNK4099: PDB '' が 'CCamera.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CBullet.obj : warning LNK4099: PDB '' が 'CBullet.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
   GameProgramming.vcxproj -> C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\Debug\GameProgramming.exe

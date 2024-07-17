@@ -30,6 +30,5 @@ private:
 	std::vector<CTriangle> mTriangles;
 	//マテリアルポインタの可変長配列
 	std::vector<CMaterial*> mpMaterials;
-
 };
 #endif
