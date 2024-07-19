@@ -2,6 +2,11 @@
 #include "CCollisionManager.h"
 #include "CColliderLine.h"
 
+void CCollider::Matrix(CMatrix* m)
+{
+	mpMatrix = m;
+}
+
 CCollider::CCollider(CCharacter3* parent, CMatrix* matrix,
 	const CVector& position, float radius)
 	: CCollider()

@@ -98,6 +98,8 @@ void CApplication::Update()
 	//モデル描画
 	//mModelX.Render();
 	mXPlayer.Render();
+	//コライダの描画
+	CCollisionManager::Instance()->Render();
 	//敵描画
 	mXEnemy.Render();
 
@@ -110,6 +112,7 @@ void CApplication::Update()
 
 	//2Dの描画終了
 	CCamera::End();
+
 }
 
 CUi* CApplication::spUi = nullptr;

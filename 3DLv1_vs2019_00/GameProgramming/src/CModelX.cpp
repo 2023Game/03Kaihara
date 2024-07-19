@@ -12,6 +12,8 @@
 * ‹æØ‚è•¶š‚Æ‚µ‚Ätrue‚ğ•Ô‚·
 */
 
+
+
 void CModelX::AnimateVertex(CMatrix *mat) {
 	//ƒtƒŒ[ƒ€”•ªŒJ‚è•Ô‚µ
 	for (size_t i = 0; i < mFrame.size(); i++) {

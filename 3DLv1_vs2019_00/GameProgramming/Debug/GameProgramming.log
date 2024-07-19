@@ -1,2 +1,20 @@
-﻿  CXCharacter.cpp
+﻿  CApplication.cpp
+  CBillBoard.cpp
+  CCharacer3.cpp
+  CPlayer.cpp
+  CXEnemy.cpp
+  main.cpp
+  コードを生成中...
+LINK : warning LNK4098: defaultlib 'MSVCRT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
+LINK : warning LNK4098: defaultlib 'LIBCMT' は他のライブラリの使用と競合しています。/NODEFAULTLIB:library を使用してください。
+CMatrix.obj : warning LNK4099: PDB '' が 'CMatrix.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CUi.obj : warning LNK4099: PDB '' が 'CUi.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CTriangle.obj : warning LNK4099: PDB '' が 'CTriangle.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CTexture.obj : warning LNK4099: PDB '' が 'CTexture.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CTaskManager.obj : warning LNK4099: PDB '' が 'CTaskManager.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CSound.obj : warning LNK4099: PDB '' が 'CSound.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CFont.obj : warning LNK4099: PDB '' が 'CFont.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CColliderTriangle.obj : warning LNK4099: PDB '' が 'CColliderTriangle.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CColliderLine.obj : warning LNK4099: PDB '' が 'CColliderLine.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
+CCamera.obj : warning LNK4099: PDB '' が 'CCamera.obj' で、または '' に見つかりません。デバッグ情報がないものとして、オブジェクトにリンクします。
   GameProgramming.vcxproj -> C:\Users\tukih\Desktop\Git\03Kaihara\3DLv1_vs2019_00\Debug\GameProgramming.exe
