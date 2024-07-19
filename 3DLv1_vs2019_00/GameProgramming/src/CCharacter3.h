@@ -29,6 +29,7 @@ public:
 	void Render();
 protected:
 	CModel* mpModel; //モデルのポインタ
+	CMatrix* mpCombinedMatrix;	//合成行列退避
 };
 
 #endif

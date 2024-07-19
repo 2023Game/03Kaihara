@@ -26,6 +26,7 @@ class CModelX {
 	friend CAnimation;
 	friend CMesh;
 public:
+	void AnimateVertex(CMatrix*);
 	//マテリアル配列の取得
 	std::vector<CMaterial*>& Material();
 	//マテリアルの検索
@@ -91,6 +92,7 @@ private:
 //CMeshクラスの定義
 class CMesh {
 public:
+	void AnimateVertex(CMatrix*);
 	//頂点にアニメーション適用
 	void AnimateVertex(CModelX* model);
 	//スキンウェイトにフレーム番号を設定する
@@ -131,8 +133,8 @@ class CSkinWeights {
 public:
 	CSkinWeights(CModelX* model);
 	~CSkinWeights();
-	const int& FrameIndex();
-	const CMatrix& Offset();
+	//const int& FrameIndex();
+	//const CMatrix& Offset();
 private:
 	char* mpFrameName;	//フレーム名
 	int mFrameIndex;	//フレーム番号

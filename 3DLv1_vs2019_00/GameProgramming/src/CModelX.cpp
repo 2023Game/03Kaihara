@@ -12,7 +12,17 @@
 * 区切り文字としてtrueを返す
 */
 
-
+void CModelX::AnimateVertex(CMatrix *mat) {
+	//フレーム数分繰り返し
+	for (size_t i = 0; i < mFrame.size(); i++) {
+		//メッシュがあれば
+		if (mFrame[i]->mpMesh) {
+			//頂点をアニメーションで更新する
+			mFrame[i]->
+				mpMesh->AnimateVertex(mat);
+		}
+	}
+}
 bool CModelX::IsDelimiter(char c)
 {
 	if (c < 0)
@@ -368,6 +378,61 @@ const CMatrix& CModelXFrame::CombinedMatrix()
 	return mCombinedMatrix;
 }
 
+void CMesh::AnimateVertex(CMatrix *mat) {
+	//アニメーション用の頂点エリアクリア
+	memset(mpAnimateVertex, 0, sizeof(CVector) * mVertexNum);
+	memset(mpAnimateNormal, 0, sizeof(CVector) * mNormalNum);
+	//スキンウェイト分繰り返し
+	for (size_t i = 0; i < mSkinWeights.size(); i++) {
+		//フレーム番号取得
+		int frameIndex = mSkinWeights[i]->mFrameIndex;
+		//フレーム合成行列にオフセット行列を合成
+		CMatrix mSkinningMatrix = mSkinWeights[i]->mOffset * mat[frameIndex];
+		//頂点数分繰り返し
+		for (int j = 0; j < mSkinWeights[i]->mIndexNum; j++) {
+			//頂点番号取得
+			int index = mSkinWeights[i]->mpIndex[j];
+			//重み取得
+			float weight = mSkinWeights[i]->mpWeight[j];
+			//頂点と法線を更新する
+			mpAnimateVertex[index] += mpVertex[index] * mSkinningMatrix * weight;
+			mpAnimateNormal[index] += mpNormal[index] * mSkinningMatrix * weight;
+		}
+	}
+	//法線を正規化する
+	for (int i = 0; i < mNormalNum; i++) {
+		mpAnimateNormal[i] = mpAnimateNormal[i].Normalize();
+	}
+}
+
+void CMesh::AnimateVertex(CModelX *model) {
+	//アニメーション用の頂点エリアクリア
+	memset(mpAnimateVertex, 0, sizeof(CVector) * mVertexNum);
+	memset(mpAnimateNormal, 0, sizeof(CVector) * mNormalNum);
+	//スキンウェイト分繰り返し
+	for (size_t i = 0; i < mSkinWeights.size(); i++) {
+		//フレーム番号取得
+		int frameIndex = mSkinWeights[i]->mFrameIndex;
+		//オフセット行列とフレーム合成行列を合成
+		CMatrix mSkinningMatrix = mSkinWeights[i]->mOffset * model->Frames()[frameIndex]->CombinedMatrix();
+		//頂点数分繰り返し
+		for (int j = 0; j < mSkinWeights[i]->mIndexNum; j++) {
+			//頂点番号取得
+			int index = mSkinWeights[i]->mpIndex[j];
+			//重み取得
+			float weight = mSkinWeights[i]->mpWeight[j];
+			//頂点と法線を更新する
+			mpAnimateVertex[index] += mpVertex[index] * mSkinningMatrix * weight;
+			mpAnimateNormal[index] += mpNormal[index] * mSkinningMatrix * weight;
+		}
+	}
+	//法線を正規化する
+	for (int i = 0; i < mNormalNum; i++) {
+		mpAnimateNormal[i] = mpAnimateNormal[i].Normalize();
+	}
+}
+
+
 //コンストラクタ
 CMesh::CMesh()
 	: mVertexNum(0)
@@ -575,33 +640,6 @@ void CMesh::Render()
 	/* 頂点データ，法線データの配列を無効にする */
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_NORMAL_ARRAY);
-}
-
-void CMesh::AnimateVertex(CModelX* model) {
-	//アニメーション用の頂点エリアクリア
-	memset(mpAnimateVertex, 0, sizeof(CVector) * mVertexNum);
-	memset(mpAnimateNormal, 0, sizeof(CVector) * mNormalNum);
-	//スキンウェイト分繰り返し
-	for (size_t i = 0; i < mSkinWeights.size(); i++) {
-		//フレーム番号取得
-		int frameIndex = mSkinWeights[i]->mFrameIndex;
-		//オフセット行列とフレーム合成行列を合成
-		CMatrix mSkinningMatrix = mSkinWeights[i]->mOffset * model->Frames()[frameIndex]->CombinedMatrix();
-		//頂点数分繰り返し
-		for (int j = 0; j < mSkinWeights[i]->mIndexNum; j++) {
-			//頂点番号取得
-			int index = mSkinWeights[i]->mpIndex[j];
-			//重み取得
-			float weight = mSkinWeights[i]->mpWeight[j];
-			//頂点と法線を更新する
-			mpAnimateVertex[index] += mpVertex[index] * mSkinningMatrix * weight;
-			mpAnimateNormal[index] += mpNormal[index] * mSkinningMatrix * weight;
-		}
-	}
-	//法線を正規化する
-	for (int i = 0; i < mNormalNum; i++) {
-		mpAnimateNormal[i] = mpAnimateNormal[i].Normalize();
-	}
 }
 
 

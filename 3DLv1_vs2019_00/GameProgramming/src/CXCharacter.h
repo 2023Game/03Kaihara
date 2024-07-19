@@ -6,7 +6,10 @@
 #include "CCharacter3.h"
 
 class CXCharacter : public CCharacter3 {
-public:
+public :
+virtual ~CXCharacter() {
+	SAFE_DELETE_ARRAY(mpCombinedMatrix);
+}
 	//初期化処理
 	void Init(CModelX* model);
 	//アニメーションの変更
@@ -23,6 +26,7 @@ public:
 	CXCharacter();
 	void Update();
 protected:
+	CMatrix* mpCombinedMatrix;	//合成行列退避
 	CModelX* mpModel;	//モデルデータ
 	int mAnimationIndex;	//アニメーション番号
 	bool mAnimationLoopFlg;	//true:アニメーションを繰り返す
