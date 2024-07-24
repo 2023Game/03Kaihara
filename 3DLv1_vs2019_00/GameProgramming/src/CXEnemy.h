@@ -3,6 +3,8 @@
 
 class CXEnemy : public CXCharacter{
 public:
+	//衝突処理
+	void Collision(CCollider* m, CCollider* o);
 	void CXEnemy::Init(CModelX* model);
 	//デフォルトコンストラクタ
 	CXEnemy();

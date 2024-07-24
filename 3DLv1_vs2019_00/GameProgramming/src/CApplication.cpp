@@ -8,6 +8,7 @@
 #include "CColliderTriangle.h"
 #include "CColliderMesh.h"
 #include "CModelX.h"
+#include "CCollider.h"
 //OpenGL
 #include "glut.h"
 
@@ -46,6 +47,9 @@ void CApplication::Start()
 
 void CApplication::Update()
 {
+	//衝突処理
+	CCollisionManager::Instance()->Collision();
+
 	if (mXPlayer.IsAnimationFinished()) {
 		int ai = mXPlayer.AnimationIndex() + 1;
 		ai %= mModelX.AnimationSet().size();
@@ -72,6 +76,8 @@ void CApplication::Update()
 	mModelViewInverse.M(0, 3, 0);
 	mModelViewInverse.M(1, 3, 0);
 	mModelViewInverse.M(2, 3, 0);
+	//衝突処理
+	CCollisionManager::Instance()->Collision();
 
 	//X軸＋回転
 	if (mInput.Key('K')) {
@@ -98,12 +104,11 @@ void CApplication::Update()
 	//モデル描画
 	//mModelX.Render();
 	mXPlayer.Render();
+
 	//コライダの描画
 	CCollisionManager::Instance()->Render();
 	//敵描画
 	mXEnemy.Render();
-
-
 
 	//2D描画開始
 	CCamera::Start(0, 800, 0, 600);
@@ -112,7 +117,6 @@ void CApplication::Update()
 
 	//2Dの描画終了
 	CCamera::End();
-
 }
 
 CUi* CApplication::spUi = nullptr;

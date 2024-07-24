@@ -26,11 +26,13 @@ void CCollisionManager::Collision() {
 		while (next->mpNext) {
 			//e‚ÌÕ“Ëˆ—‚ðŒÄ‚Ño‚·
 			//Ž©•ª‚ÌÕ“Ëˆ—
-			if (task->mpParent)
+			if (task->mpParent) {
 				task->mpParent->Collision(task, next);
+			}
 			//‘ŠŽè‚ÌÕ“Ëˆ—
-			if (next->mpParent)
+			if (next->mpParent) {
 				next->mpParent->Collision(next, task);
+			}
 			//ŽŸ‚ð‹‚ß‚é
 			next = (CCollider*)next->mpNext;
 		}
