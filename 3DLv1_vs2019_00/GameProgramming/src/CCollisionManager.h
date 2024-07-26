@@ -10,12 +10,12 @@
 class CCollisionManager : public CTaskManager
 {
 public:
+	//インスタンスの取得
+	static CCollisionManager* Instance();
 	//衝突処理
 	void Collision();
 	//衝突処理
 	void Collision(CCollider* c, int range);
-	//インスタンスの取得
-	static CCollisionManager* Instance();
 private:
 	//マネージャのインスタンス
 	static CCollisionManager* mpInstance;

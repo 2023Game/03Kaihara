@@ -15,7 +15,7 @@ CCollisionManager* CCollisionManager::Instance()
 }
 
 //Õ“Ëˆ—
-void CCollisionManager::Collision() {
+void CCollisionManager::Collision(){
 	//Œ»İˆÊ’u‚ğæ“ª‚É‚·‚é
 	CCollider* task = (CCollider*)mHead.mpNext;
 	//ÅŒã‚Ü‚Å‚«‚½‚çI—¹‚·‚é

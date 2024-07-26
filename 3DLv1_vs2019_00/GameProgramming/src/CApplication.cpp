@@ -47,9 +47,6 @@ void CApplication::Start()
 
 void CApplication::Update()
 {
-	//衝突処理
-	CCollisionManager::Instance()->Collision();
-
 	if (mXPlayer.IsAnimationFinished()) {
 		int ai = mXPlayer.AnimationIndex() + 1;
 		ai %= mModelX.AnimationSet().size();
@@ -105,8 +102,12 @@ void CApplication::Update()
 	//mModelX.Render();
 	mXPlayer.Render();
 
+	//衝突処理
+	CCollisionManager::Instance()->Collision();
+
 	//コライダの描画
 	CCollisionManager::Instance()->Render();
+
 	//敵描画
 	mXEnemy.Render();
 
