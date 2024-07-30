@@ -23,6 +23,7 @@ CTexture CApplication::mTexture;
 #define SOUND_OVER "res\\mdai.wav" //ゲームオーバー音声ファイル
 //モデルデータの指定
 #define MODEL_OBJ "res\\f14.obj", "res\\f14.mtl"
+#define MODEL_KNIGHT "res\\knight\\knight_01.tga", "res\\knight\\Knight-animations-list.txt"
 
 CMatrix CApplication::mModelViewInverse;
 
@@ -35,11 +36,12 @@ void CApplication::Start()
 {
 	//3Dモデルファイルの読み込み
 	mModelX.Load(MODEL_FILE);
+	mKnight.Load("res\\knight\\knight_low.X");
 	//キャラクターにモデルを設定
 	mXPlayer.Init(&mModelX);
 	mFont.Load("FontG.png", 1, 4096 / 64);
 	//敵の初期設定
-	mXEnemy.Init(&mModelX);
+	mXEnemy.Init(&mKnight);
 	//敵の配置
 	mXEnemy.Position(CVector(7.0f, 0.0f, 0.0f));
 

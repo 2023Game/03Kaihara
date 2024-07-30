@@ -25,6 +25,7 @@ class CApplication
 private:
 	//敵のインスタンス
 	CXEnemy mXEnemy;
+	CModelX mKnight;
 	//キャラクタのインスタンス
 	CXPlayer mXPlayer;
 	CMatrix mMatrix;
@@ -39,7 +40,7 @@ private:
 	//モデルビューの逆行列
 	static CMatrix mModelViewInverse;
 	//C5モデル
-	CModel mModelC5;
+	CModel mModelC5; 
 	CPlayer mPlayer;
 	CModel mBackGround; //背景モデル
 	CSound mSoundBgm;	//BGM

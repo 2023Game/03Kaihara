@@ -3,6 +3,7 @@ c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\vc143
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\ctaskmanager.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\csound.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cplayer.obj
+c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cmodelx.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\ccollider.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cmodel.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cmaterial.obj
@@ -22,12 +23,14 @@ c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cappl
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\ctransform.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cmatrix.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\main.obj
+c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cxplayer.obj
+c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cxenemy.obj
+c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cxcharacter.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cvector.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cui.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\ctriangle.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cinput.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\ctexture.obj
-c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\cmodelx.obj
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\debug\gameprogramming.exe
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\debug\gameprogramming.pdb
 c:\users\tukih\desktop\git\03kaihara\3dlv1_vs2019_00\gameprogramming\debug\gameprogramming.ilk

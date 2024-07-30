@@ -79,6 +79,14 @@ void CModelX::Load(char* file) {
 	buf[size] = '\0';
 	fclose(fp);	//ファイルをクローズする
 
+	//ダミールートフレームの作成
+	CModelXFrame* p = new CModelXFrame();
+	//名前なし
+	p->mpName = new char[1];
+	p->mpName[0] = '\0';
+	//フレーム配列に追加
+	mFrame.push_back(p);
+
 	//文字列の最後まで繰り返し
 	while (*mpPointer != '\0') {
 		GetToken();	//単語の取得
@@ -92,9 +100,42 @@ void CModelX::Load(char* file) {
 		}
 		//単語がFrameの場合
 		else if (strcmp(mToken, "Frame") == 0) {
-			//フレームを作成する
-			new CModelXFrame(this);
+			//フレーム名取得
+			GetToken();
+			if (strchr(mToken, '{')) {
+				//フレーム名なし：スキップ
+				SkipNode();
+				GetToken(); //}
+			}
+			else {
+				//フレームが無ければ
+				if (FindFrame(mToken) == 0) {
+					//フレームを作成する
+					p->mChild.push_back(
+						new CModelXFrame(this));
+				}
+			}
 		}
+		else if (strcmp(mToken, "Frame") == 0) {
+			//フレーム名取得
+			GetToken();
+			if (strchr(mToken, '{')) {
+				//フレーム名なし：スキップ
+				SkipNode();
+				GetToken(); //}
+			}
+			else 
+			{
+				//フレームが無ければ
+				if (FindFrame(mToken) == 0) 
+				{
+					//フレームを作成する
+					p->mChild.push_back(
+						new CModelXFrame(this));
+				}
+			}
+		}
+
 		//単語がAnimationSetの場合
 		else if (strcmp(mToken, "AnimationSet") == 0) {
 			new CAnimationSet(this);
@@ -298,6 +339,18 @@ CMaterial* CModelX::FindMaterial(char* name) {
 	return nullptr;
 }
 
+CModelXFrame::CModelXFrame()
+	: mpMesh(nullptr)
+	, mpName(nullptr)
+	, mIndex(0)
+{}
+
+int CModelXFrame::Index()
+{
+	if (this == NULL) return 0;
+	return mIndex;
+}
+
 /*
  CModelXFrame
  model：CModelXインスタンスへのポインタ
@@ -317,7 +370,7 @@ CModelXFrame::CModelXFrame(CModelX* model)
 	//変換行列を単位行列にする
 	mTransformMatrix.Identity();
 	//次の単語（フレーム名の予定）を取得する
-	model->GetToken(); // frame name
+	//削除model->GetToken(); // frame name
 	//フレーム名分エリアを確保する
 	mpName = new char[strlen(model->mToken) + 1];
 	//フレーム名をコピーする
@@ -330,11 +383,22 @@ CModelXFrame::CModelXFrame(CModelX* model)
 		model->GetToken(); // Frame
 		//}かっこの場合は終了
 		if (strchr(model->mToken, '}')) break;
-		//新なフレームの場合は、子フレームに追加
+		//新たなフレームの場合は、子フレームに追加
 		if (strcmp(model->mToken, "Frame") == 0) {
-			//フレームを作成し、子フレームの配列に追加
-			mChild.push_back(
-				new CModelXFrame(model));
+			//フレーム名取得
+			model->GetToken();
+			if (strchr(model->mToken, '{')) {
+				//フレーム名なし：スキップ
+				model->SkipNode();
+				model->GetToken(); //}
+			}
+			else {
+				//フレームが無ければ
+				if (model->FindFrame(model->mToken) == 0) {
+					//フレームを作成し、子フレームの配列に追加
+					mChild.push_back(new CModelXFrame(model));
+				}
+			}
 		}
 		else if (strcmp(model->mToken, "FrameTransformMatrix") == 0)
 		{
@@ -960,8 +1024,3 @@ CAnimation::~CAnimation() {
 	SAFE_DELETE_ARRAY(mpKey);
 }
 
-
-int CModelXFrame::Index()
-{
-	return mIndex;
-}

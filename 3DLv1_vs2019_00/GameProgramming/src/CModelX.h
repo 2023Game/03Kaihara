@@ -71,15 +71,17 @@ class CModelXFrame {
 	friend CAnimation;
 	friend CAnimationSet;
 public:
+	//デフォルトコンストラクタ
+	CModelXFrame();
 	const CMatrix& CombinedMatrix();
 	//合成行列の作成
 	void AnimateCombined(CMatrix* parent);
-	int Index();
 	void Render();
 	//コンストラクタ
 	CModelXFrame(CModelX* model);
 	//デストラクタ
 	~CModelXFrame();
+	int Index();
 private:
 	CMatrix mCombinedMatrix;	//合成行列
 	CMesh* mpMesh;	// Meshデータ
