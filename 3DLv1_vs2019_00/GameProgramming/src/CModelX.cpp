@@ -904,6 +904,7 @@ CAnimation::CAnimation(CModelX* model)
 	}
 	else {
 		model->GetToken(); // {
+		model->GetToken(); // {
 	}
 
 	model->GetToken(); //FrameName
