@@ -9,7 +9,9 @@ public:
 	//デフォルトコンストラクタ
 	CXEnemy();
 	CCollider mColSphereHead;	//頭
-	CCollider mColSphereSword;	//剣
+	CCollider mColSphereSword0;	//剣
+	CCollider mColSphereSword1;	//剣
+	CCollider mColSphereSword2;	//剣
 	CXCharacter mXCharacter;
 private:
 	//コライダの宣言
