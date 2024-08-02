@@ -27,6 +27,9 @@ class CModelX {
 	friend CAnimation;
 	friend CMesh;
 public:
+	//アニメーションセットの追加
+	void AddAnimationSet(const char* file);
+	bool IsLoaded();
 	/*
 アニメーションを抜き出す
 idx:分割したいアニメーションセットの番号
@@ -68,6 +71,7 @@ name:追加するアニメーションセットの名前
 		return mAnimationSet;
 	}
 private:
+	bool mLoaded;
 	std::vector<CMaterial*> mMaterial;  //マテリアル配列
 	char* mpPointer;	//読み込み位置
 	char mToken[1024];	//取り出した単語の領域

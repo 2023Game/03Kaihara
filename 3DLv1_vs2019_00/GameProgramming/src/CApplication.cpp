@@ -34,11 +34,12 @@ CTexture* CApplication::Texture()
 
 void CApplication::Start()
 {
+	mpPaladin = new CPaladin();
 	//3Dモデルファイルの読み込み
 	mModelX.Load(MODEL_FILE);
 	mKnight.Load("res\\knight\\knight_low.X");
 	mKnight.SeparateAnimationSet(0, 10, 80, "walk");//1:移動
-	mKnight.SeparateAnimationSet(0, 1530, 1830, "idle1");//2:待機
+	mKnight.SeparateAnimationSet(0, 1530, 1830, "idle1");//2:待機a
 	mKnight.SeparateAnimationSet(0, 10, 80, "walk");//3:ダミー
 	mKnight.SeparateAnimationSet(0, 10, 80, "walk");//4:ダミー
 	mKnight.SeparateAnimationSet(0, 10, 80, "walk");//5:ダミー
@@ -56,10 +57,14 @@ void CApplication::Start()
 	//敵の配置
 	mXEnemy.Position(CVector(7.0f, 0.0f, 0.0f));
 	mXEnemy.ChangeAnimation(2, true, 200);
+	mpPaladin->Position(CVector(-1.0f, 0.0f, 5.0f));
+	mpPaladin->ChangeAnimation(1, true, 60);
 }
 
 void CApplication::Update()
 {
+	
+
 	if (mXPlayer.IsAnimationFinished()) {
 		int ai = mXPlayer.AnimationIndex() + 1;
 		ai %= mModelX.AnimationSet().size();
@@ -69,6 +74,7 @@ void CApplication::Update()
 	mXPlayer.Update();
 	//敵の更新
 	mXEnemy.Update();
+	mpPaladin->Update();
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
 	//視点を求める
@@ -123,6 +129,7 @@ void CApplication::Update()
 
 	//敵描画
 	mXEnemy.Render();
+	mpPaladin->Render();
 
 	//2D描画開始
 	CCamera::Start(0, 800, 0, 600);

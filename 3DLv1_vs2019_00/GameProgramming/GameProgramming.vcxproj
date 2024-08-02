@@ -28,6 +28,7 @@
     <ClCompile Include="src\CModel.cpp" />
     <ClCompile Include="src\CCollider.cpp" />
     <ClCompile Include="src\CModelX.cpp" />
+    <ClCompile Include="src\CPaladin.cpp" />
     <ClCompile Include="src\CPlayer.cpp" />
     <ClCompile Include="src\CSound.cpp" />
     <ClCompile Include="src\CTaskManager.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="src\CModel.h" />
     <ClInclude Include="src\CCollider.h" />
     <ClInclude Include="src\CModelX.h" />
+    <ClInclude Include="src\CPaladin.h" />
     <ClInclude Include="src\CPlayer.h" />
     <ClInclude Include="src\CSound.h" />
     <ClInclude Include="src\CTask.h" />
