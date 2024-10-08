@@ -1,0 +1,86 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using UnityEngine.UI;
+
+public static class Utilities
+{
+    public static IEnumerator DelayMethod(float waitTime, Action action)
+    {
+        yield return new WaitForSeconds(waitTime);
+        action();
+    }
+}
+public class PlayerMoob : MonoBehaviour
+{
+    public static bool moob = true; //動けるかどうか
+    static public float PHp = 100; //現在HP
+    static public float MaxPHp; //最大HP
+    static public float EXP; //所持経験値
+    int PDf = 0; //防御力
+    float[] PRe = new float[5] { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f }; //属性耐性
+    int PHe = 0; //再生力
+    int a = 0;
+    int DIn = 60; //ダメージを受ける間隔
+    public static int HaveScrap = 100; //所持スクラップ数
+    int DashInterval = 60; //ダッシュのクールタイム
+    float damage; //ダメージ
+    float spead = 0.12f; //移動速度
+    new Transform transform;
+    Rigidbody2D rigid;
+    AudioSource audioSource;
+    public AudioClip Dash;
+    public AudioClip DamageSE;
+    public AudioClip KeikokuSE;
+    public Transform Player; // 動かすオブジェクトのトランスフォーム
+    public Transform Aim; // ターゲットのオブジェクトのトランスフォーム
+    public Text PlayerText;
+    void Start()
+    {
+        //フレームレートを60にする
+        Application.targetFrameRate = 60;
+        rigid = GetComponent<Rigidbody2D>();
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        // 向きたい方向を計算
+        Vector2 dir = (Aim.position - Player.position);
+        // 向きたい方向に回転
+        Player.rotation = Quaternion.FromToRotation(Vector2.right, dir);
+        if (Input.GetKey(KeyCode.D))
+        {
+            rigid.velocity += new Vector2(0.6f, 0f);  //→
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            rigid.velocity += new Vector2(-0.6f, 0f); //←
+        }
+            rigid.velocity *= new Vector2(0.9f, 1); //徐々に減速 
+    }
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        //地面を踏んだ状態でスペースを押すとジャンプ
+        if (collision.gameObject.tag == "Grand" && Input.GetKey(KeyCode.Space) && rigid.velocity.magnitude <= 8f)
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, 8f);
+        }
+    }
+    public void Damage(int[] EAt)
+    {
+        //敵の攻撃力-プレイヤーの防御力×属性耐性
+        damage = EAt[0] - PDf * PRe[EAt[1]];
+        if (damage <= 0) damage = 1; //0ダメージ以下なら1ダメージにする
+        PHp -= damage;
+        audioSource.PlayOneShot(DamageSE);
+        gameObject.GetComponent<Renderer>().material.color *= new Color(0.5f, 0.5f, 0.5f, 0.5f);//無敵時間中色を暗くする
+        StartCoroutine(Utilities.DelayMethod(1, () => gameObject.GetComponent<Renderer>().material.color *= new Color(2f, 2f, 2f, 2f)));
+        //HPが残り少ない時警告音を鳴らす
+        if (PHp <= MaxPHp / 5)
+        {
+            audioSource.PlayOneShot(KeikokuSE);
+        }
+    }
+}
