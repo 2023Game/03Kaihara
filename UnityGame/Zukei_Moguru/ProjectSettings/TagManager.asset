@@ -8,11 +8,12 @@ TagManager:
   - PBullet
   - Enemy
   - Tail
+  - StageBorder
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

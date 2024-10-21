@@ -14,6 +14,7 @@ public class BulletMoob : MonoBehaviour
     float BRa; //’eŠÛË’ö
     float Bkidou; //’eŠÛ‚Ì‹O“¹
     Gun gun;
+    bool Moob = true;
     void Start()
     {
         if (Exprosion != null) Exprosion.SetActive(false);
@@ -22,7 +23,7 @@ public class BulletMoob : MonoBehaviour
         GameObject player = GameObject.Find("Gun");
         gun = player.GetComponent<Gun>();
         //’eŠÛ‚ÌƒXƒe[ƒ^ƒX‚ğGun‚©‚çæ“¾
-        BAt = new float[] { gun.BAt[0], gun.BAt[1], gun.BAt[2] };
+        BAt = new float[] { gun.BAt[0],gun.BAt[1] };
         BSp = gun.BSp; //’eŠÛ‘¬“x
         BRa = gun.BRa; //Ë’ö
         Bkidou = gun.BKi; //’eŠÛ‚Ì‹O“¹
@@ -40,6 +41,13 @@ public class BulletMoob : MonoBehaviour
                 break;
             case 1: //™X‚É‰Á‘¬
                 rigib.velocity += new Vector2(0, BSp / 30);
+                break;
+            case 3: //‰‘¬“x‚Ì‚İó‚¯‚ÄŒã‚Íd—Í‚É]‚¤
+                if (Moob)
+                {
+                    rigib.velocity = transform.right * BSp;
+                    Moob = false;
+                }
                 break;
         }
         //Ë’ö‚Ì•ªŠÔ‚ªŒo‚Â‚ÆÁ‚·

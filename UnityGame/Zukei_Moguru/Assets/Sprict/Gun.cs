@@ -157,7 +157,7 @@ public class Gun : MonoBehaviour
         BNu = BSt[GunDeta.Buki[whs % 4], 8];   //”­Ë”
         BPr = BSt[GunDeta.Buki[whs % 4], 9];   //¸“x
         BRa = BSt[GunDeta.Buki[whs % 4], 10];  //Ë’ö
-        BBa = new float[] { BSt[GunDeta.Buki[whs % 4], 11], BSt[GunDeta.Buki[whs % 4], 12], BSt[GunDeta.Buki[whs % 4], 13] };//’eŠÛ‚Ìí—Ş,”­Ë‰¹,Ø‚è‘Ö‚¦‰¹
+        BBa = new float[] { BSt[GunDeta.Buki[whs % 4], 11], BSt[GunDeta.Buki[whs % 4], 12], BSt[GunDeta.Buki[whs % 4], 13] };//’eŠÛ‚Ìí—Ş,Ø‚è‘Ö‚¦‰¹
         BKi = BSt[GunDeta.Buki[whs % 4], 14];  //’eŠÛ‚Ì‹O“¹
         Zandan[1, whs % 4] = BRe[1]; //Å‘å‘•“U”‚ğ‘ã“ü
         //BBa‚Ì”’l‚ğŒ³‚É’eŠÛ‚Ìí—Ş,”­Ë‰¹,Ø‚è‘Ö‚¦‰¹‚ğ‘}“ü

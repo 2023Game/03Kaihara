@@ -16,14 +16,14 @@ public class PlayerMoob : MonoBehaviour
 {
     public static bool moob = true; //動けるかどうか
     static public float PHp = 100; //現在HP
-    static public float MaxPHp; //最大HP
+    static public float MaxPHp = 100; //最大HP
     static public float EXP; //所持経験値
     int PDf = 0; //防御力
     float[] PRe = new float[5] { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f }; //属性耐性
     int PHe = 0; //再生力
     int a = 0;
     int DIn = 60; //ダメージを受ける間隔
-    public static int HaveScrap = 100; //所持スクラップ数
+    public static int HaveCoin = 100; //所持コイン数
     int DashInterval = 60; //ダッシュのクールタイム
     float damage; //ダメージ
     float spead = 0.12f; //移動速度
@@ -41,6 +41,7 @@ public class PlayerMoob : MonoBehaviour
         //フレームレートを60にする
         Application.targetFrameRate = 60;
         rigid = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -77,10 +78,18 @@ public class PlayerMoob : MonoBehaviour
         audioSource.PlayOneShot(DamageSE);
         gameObject.GetComponent<Renderer>().material.color *= new Color(0.5f, 0.5f, 0.5f, 0.5f);//無敵時間中色を暗くする
         StartCoroutine(Utilities.DelayMethod(1, () => gameObject.GetComponent<Renderer>().material.color *= new Color(2f, 2f, 2f, 2f)));
+        gameObject.layer = 1; //敵と衝突しないレイヤーに切り替える
+        StartCoroutine(Utilities.DelayMethod(1, () => gameObject.layer = 0));
         //HPが残り少ない時警告音を鳴らす
         if (PHp <= MaxPHp / 5)
         {
             audioSource.PlayOneShot(KeikokuSE);
         }
+    }
+    public void CoinGet(int Coin)
+    {
+        //コインを拾う
+        HaveCoin += Coin;
+        audioSource.Play();
     }
 }

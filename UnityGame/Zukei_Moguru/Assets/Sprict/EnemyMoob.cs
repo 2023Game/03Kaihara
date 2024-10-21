@@ -14,7 +14,7 @@ public class EnemyMoob : MonoBehaviour
     public float[] EArDf = new float[5]; //属性耐性[無属性,炎,氷.雷,魔]
     public int ESp; //移動速度
     public int EMo; //動き方
-    int[] ESc;  //スクラップドロップ率 [1point , 10point ,100point]
+    int[] ECo;  //コインドロップ率 [1point , 5point , 10point , 50point , 100point , 500point]
     int[] EDr;　//落とす武器の種類と確率
     public int EEx; //経験値
     bool ones = true;
@@ -67,17 +67,29 @@ public class EnemyMoob : MonoBehaviour
                     int indexB = UnityEngine.Random.Range(1, 100);
                     int indexC = UnityEngine.Random.Range(1, 100);
                     int indexD = UnityEngine.Random.Range(1, 100);
-                    if (indexA <= ESc[0])
+                    if (indexA <= ECo[0])
                     {
                         Instantiate(Scrap[0], transform.position, new Quaternion(0f, 0f, 0f, 0f)); //ミニスクラップ召喚
                     }
-                    if (indexB <= ESc[1])
+                    if (indexB <= ECo[1])
                     {
                         Instantiate(Scrap[1], transform.position, new Quaternion(0f, 0f, 0f, 0f)); //スクラップ召喚
                     }
-                    if (indexC <= ESc[2])
+                    if (indexC <= ECo[2])
                     {
                         Instantiate(Scrap[2], transform.position, new Quaternion(0f, 0f, 0f, 0f)); //ビックスクラップ召喚
+                    }
+                    if (indexA <= ECo[3])
+                    {
+                        Instantiate(Scrap[3], transform.position, new Quaternion(0f, 0f, 0f, 0f)); //ミニスクラップ召喚
+                    }
+                    if (indexB <= ECo[4])
+                    {
+                        Instantiate(Scrap[4], transform.position, new Quaternion(0f, 0f, 0f, 0f)); //スクラップ召喚
+                    }
+                    if (indexC <= ECo[5])
+                    {
+                        Instantiate(Scrap[5], transform.position, new Quaternion(0f, 0f, 0f, 0f)); //ビックスクラップ召喚
                     }
                     if (indexD <= EDr[1] && !GunDeta.BKaihou[EDr[0]])
                     {
@@ -91,12 +103,12 @@ public class EnemyMoob : MonoBehaviour
             }
         }
         //プレイヤーとの距離を計算
-        float dis = Vector3.Distance(transform.position, GameObject.Find("Player").transform.position);
+        float dis = Vector2.Distance(transform.position, GameObject.Find("Player").transform.position);
         //移動処理
         if (Live)
         {
             //向きたい方向を計算
-            Vector3 dir = new(transform.position.x - GameObject.Find("Player").transform.position.x, 0f, transform.position.z - GameObject.Find("Player").transform.position.z);
+            Vector2 dir = new(transform.position.x - GameObject.Find("Player").transform.position.x, 0f);
             //動き方
             switch (EMo)
             {
@@ -105,8 +117,8 @@ public class EnemyMoob : MonoBehaviour
                     break;
                 //敵の方向へ動き続ける
                 case 1:
-                    this.transform.rotation = Quaternion.FromToRotation(-Vector3.right, dir);
-                    transform.Translate(Vector3.right * Time.deltaTime * ESp);
+                    this.transform.rotation = Quaternion.FromToRotation(-Vector2.right, dir);
+                    transform.Translate(Vector2.right * Time.deltaTime * ESp);
                     break;
                 //1秒毎に敵へ向けて直進
                 case 2:
@@ -122,7 +134,7 @@ public class EnemyMoob : MonoBehaviour
                     }
                     else
                     {
-                        this.transform.rotation = Quaternion.FromToRotation(-Vector3.right, dir);
+                        this.transform.rotation = Quaternion.FromToRotation(-Vector2.right, dir);
                         i = 0;
                     }
                     break;
@@ -147,79 +159,6 @@ public class EnemyMoob : MonoBehaviour
                         i = 0;
                     }
                     break;
-                //1ボス
-                case 10:
-                    i++;
-                    if (Live && (i < 120 || (i > 180 && i < 300) || (i > 360 && i < 480)))
-                    {
-                        transform.Translate(Vector3.right * Time.deltaTime * ESp);
-                        if (EHp <= 0)
-                        {
-                            i = 0;
-                            Live = false;
-                        }
-                    }
-                    else if (i <= 720)
-                    {
-                        this.transform.rotation = Quaternion.FromToRotation(-Vector3.right, dir);
-                    }
-                    else i = 0;
-                    break;
-                //ぼす針
-                case 11:
-                    i++;
-                    if (i == 720 || i == 360)
-                        Instantiate(EBullet, new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z), transform.rotation); //発射
-                    if (i == 720) i = 0;
-                    break;
-                //ぼす砲台
-                case 12:
-                    i++;
-                    if (i <= 480 && (i % 180 == 121 || i % 180 == 131 || i % 180 == 141))
-                        for (int q = 0; q < 3; q++)
-                        {
-                            transform.localRotation = new(transform.localRotation.z, transform.localRotation.y + (0.10f - (q * 0.10f)), transform.localRotation.z, transform.localRotation.w);//銃口をブラす
-                            Vector3 pos = transform.position;
-                            Quaternion rot = new(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-                            Instantiate(EBullet, pos, rot); //発射
-                            transform.localRotation = new(0, 0, 0, 0);
-                        }
-                    else if (i > 480 && i % 60 == 0 && i < 640)
-                    {
-                        for (int q = 0; q < 4; q++)
-                        {
-                            transform.localRotation = new(transform.localRotation.z, transform.localRotation.y + (0.375f - (q * 0.25f)), transform.localRotation.z, transform.localRotation.w);//銃口をブラす
-                            Vector3 pos = transform.position;
-                            Quaternion rot = new(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-                            Instantiate(EBullet, pos, rot); //発射
-                            transform.localRotation = new(0, 0, 0, 0);
-                        }
-                    }
-                    else if (i > 480 && i % 60 == 30 && i < 640)
-                    {
-                        for (int q = 0; q < 3; q++)
-                        {
-                            transform.localRotation = new(transform.localRotation.z, transform.localRotation.y + (0.25f - (q * 0.25f)), transform.localRotation.z, transform.localRotation.w);//銃口をブラす
-                            Vector3 pos = transform.position;
-                            Quaternion rot = new(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
-                            Instantiate(EBullet, pos, rot); //発射
-                            transform.localRotation = new(0, 0, 0, 0);
-                        }
-                    }
-                    if (i >= 720) i = 0;
-                    break;
-                //弾丸
-                case -1:
-                    transform.Translate(Vector3.up * Time.deltaTime * ESp);
-                    i++;
-                    if (i >= 120) Destroy(gameObject);
-                    break;
-                //弾丸
-                case -2:
-                    transform.Translate(Vector3.right * Time.deltaTime * ESp);
-                    i++;
-                    if (i >= 120) Destroy(gameObject);
-                    break;
             }
         }
         //プレイヤーから一定以上離れて少し経過すると消滅
@@ -234,7 +173,7 @@ public class EnemyMoob : MonoBehaviour
             else j = 0;
         }
     }
-    void OnCollisionStay(Collision collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
         if (Live)
         {
@@ -243,14 +182,15 @@ public class EnemyMoob : MonoBehaviour
             //プレイヤーにぶつかると相手のHPを減らす
             if (collision.gameObject.tag == "Player" && AtInterval >= 60)
             {
+                Debug.Log("A");
                 collision.gameObject.GetComponent<PlayerMoob>().Damage(EAt);
                 AtInterval = 0;
             }
             //プレイヤーが自分より高い位置にいる時ジャンプ
             if (collision.gameObject.tag == "Grand" && rigid.velocity.magnitude <= 10 && dis > 0.4f && janpinterval <= 0 && !(EMo == 0))
             {
-                rigid.velocity = new(0f, 24f);
-                StartCoroutine(Utilities.DelayMethod(0.2f, () => rigid.velocity = Vector3.right * 4));
+                rigid.velocity += new　Vector2(0f, 14f);
+                StartCoroutine(Utilities.DelayMethod(0.2f, () => rigid.velocity = Vector2.up * 4));
                 janpinterval = 60;
             }
             else
@@ -260,7 +200,7 @@ public class EnemyMoob : MonoBehaviour
             }
         }
     }
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
         //自身が弾丸の場合プレイヤーに当たるとダメージを与えて消滅する
         if (other.gameObject.tag == "Player" && gameObject.tag == "EBullet")
@@ -307,9 +247,22 @@ public class EnemyMoob : MonoBehaviour
                 EArDf = new float[] { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f }; //属性耐性[無属性,炎,氷.雷,魔]
                 ESp = 0; //移動速度
                 EMo = 0; //行動AI
-                ESc = new int[] { 0, 0, 0 }; //落とすスクラップ
+                ECo = new int[] { 0, 0, 0, 0, 0, 0 }; //落とすスクラップ
                 EDr = new int[] { 0, 0 };//落とす武器
                 EEx = 0;
+                break;
+            case "まる":
+                Boss = false;
+                ENa = "まる"; //名前
+                EHp = 100; //体力
+                EAt = new int[] { 10, 0 }; //攻撃力
+                EDf = 0; //防御力
+                EArDf = new float[] { 1.0f, 1.5f, 1.0f, 1.0f, 1.0f }; //属性耐性[無属性,炎,氷.雷,魔]
+                ESp = 2; //移動速度
+                EMo = 1; //行動AI
+                ECo = new int[] { 20, 0, 0, 0, 0, 0 }; //落とすコイン
+                EDr = new int[] { 0, 0 };//落とす武器
+                EEx = 10;
                 break;
         }
     }
