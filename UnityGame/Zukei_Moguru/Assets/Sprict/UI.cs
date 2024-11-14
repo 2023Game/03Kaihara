@@ -26,7 +26,7 @@ public class UI : MonoBehaviour
         ReloadUI = GameObject.Find("ReloadUI");
         BossHPUI = GameObject.Find("BossHPUI");
         GunUI = GameObject.Find("GunUI");
-       // BossHPUI.GetComponent<Image>().fillAmount = 0;
+        BossHPUI.GetComponent<Image>().fillAmount = 0;
     }
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class UI : MonoBehaviour
         HPUIURA.GetComponent<Image>().fillAmount = PlayerMoob.MaxPHp / 500;
         HPUI.GetComponent<Image>().fillAmount = PlayerMoob.MaxPHp / 500;
         HPUI.GetComponent<Image>().fillAmount *= PlayerMoob.PHp / PlayerMoob.MaxPHp;
-        ReloadUI.GetComponent<Image>().fillAmount = Gun.ReloadInterval / Gun.BRe[2];
+        ReloadUI.GetComponent<Image>().fillAmount = Gun.ReloadInterval / (Gun.BRe[2] * 120);
         Gun.ReloadInterval--;
         if (Input.GetKey(KeyCode.Escape) && ExitUIOn)
         {

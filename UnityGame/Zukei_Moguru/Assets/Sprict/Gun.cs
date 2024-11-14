@@ -62,17 +62,17 @@ public class Gun : MonoBehaviour
         Kirikae(); //銃の切り替え処理
         FireInterval++;
         //弾が残っていて動けるなら左クリック中に定期的に弾を発射
-        if (Input.GetMouseButton(0) && FireInterval >= 60 / BRe[0] && PlayerMoob.moob && Zandan[0, whs % 4] > 0)
+        if (Input.GetMouseButton(0) && FireInterval >= 120 / BRe[0] && PlayerMoob.moob && Zandan[0, whs % 4] > 0)
         {
             Fire();
             FireInterval = 0;//発射間隔をリセット
         }
         else if ((Zandan[0, whs % 4] <= 0 || Input.GetKey(KeyCode.R)) && Reload) //残弾が0以下になるかRを押すとリロードする
         {
-            ReloadInterval = BRe[2];
+            ReloadInterval = BRe[2] * 120;
             audioSource.PlayOneShot(KirikaeSE);
-            StartCoroutine(Utilities.DelayMethod(BRe[2] / 60, () => Zandan[0, whs % 4] = Zandan[1, whs % 4]));
-            StartCoroutine(Utilities.DelayMethod(BRe[2] / 60, () => Reload = true));
+            StartCoroutine(Utilities.DelayMethod(BRe[2], () => Zandan[0, whs % 4] = Zandan[1, whs % 4]));
+            StartCoroutine(Utilities.DelayMethod(BRe[2], () => Reload = true));
             Reload = false;
         }
     }

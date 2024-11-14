@@ -59,11 +59,11 @@ public class GunDeta : MonoBehaviour
         BSt[i, 3] = 4;//連射力
         BSt[i, 4] = 1;//装填数
         BSt[i, 5] = 0;//リロード速度
-        BSt[i, 6] = 10;//弾速
+        BSt[i, 6] = 6;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
         BSt[i, 9] = 0;//精度
-        BSt[i, 10] = 7;//射程
+        BSt[i, 10] = 10;//射程
         BSt[i, 11] = 4;//弾丸の種類
         BSt[i, 12] = 4;//発射音
         BSt[i, 13] = 4;//切り替え音
@@ -76,7 +76,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 1;//ノックバック
         BSt[i, 3] = 1;//連射力
         BSt[i, 4] = 1;//装填数
-        BSt[i, 5] = 60;//リロード速度
+        BSt[i, 5] = 0;//リロード速度
         BSt[i, 6] = 10;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -94,8 +94,8 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 1;//ノックバック
         BSt[i, 3] = 3;//連射力
         BSt[i, 4] = 12;//装填数
-        BSt[i, 5] = 40;//リロード速度
-        BSt[i, 6] = 20;//弾速
+        BSt[i, 5] = 0.5f;//リロード速度
+        BSt[i, 6] = 8;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
         BSt[i, 9] = 15;//精度
@@ -112,8 +112,8 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 2;//ノックバック
         BSt[i, 3] = 1;//連射力
         BSt[i, 4] = 6;//装填数
-        BSt[i, 5] = 80;//リロード速度
-        BSt[i, 6] = 60;//弾速
+        BSt[i, 5] = 1.5f;//リロード速度
+        BSt[i, 6] = 25;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
         BSt[i, 9] = 0;//精度
@@ -130,7 +130,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 1;//ノックバック
         BSt[i, 3] = 1.5f;//連射力
         BSt[i, 4] = 6;//装填数
-        BSt[i, 5] = 60;//リロード速度
+        BSt[i, 5] = 1f;//リロード速度
         BSt[i, 6] = 60;//弾速
         BSt[i, 7] = 1;//発射方式
         BSt[i, 8] = 4;//発射数
@@ -148,7 +148,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 1;//ノックバック
         BSt[i, 3] = 8;//連射力
         BSt[i, 4] = 24;//装填数
-        BSt[i, 5] = 60;//リロード速度
+        BSt[i, 5] = 1f;//リロード速度
         BSt[i, 6] = 30;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -167,7 +167,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 3] = 2;//連射力
         BSt[i, 4] = 6;//装填数
         BSt[i, 5] = 1;//リロード速度
-        BSt[i, 6] = 60;//弾速
+        BSt[i, 6] = 120;//弾速
         BSt[i, 7] = 2;//発射方式
         BSt[i, 8] = 2;//発射数
         BSt[i, 9] = 15;//精度
@@ -184,7 +184,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 3;//ノックバック
         BSt[i, 3] = 0.6f;//連射力
         BSt[i, 4] = 6;//装填数
-        BSt[i, 5] = 80;//リロード速度
+        BSt[i, 5] = 2f;//リロード速度
         BSt[i, 6] = 80;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -202,7 +202,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 1;//ノックバック
         BSt[i, 3] = 0.6f;//連射力
         BSt[i, 4] = 1;//装填数
-        BSt[i, 5] = 90;//リロード速度
+        BSt[i, 5] = 0;//リロード速度
         BSt[i, 6] = 20;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -220,7 +220,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 2;//ノックバック
         BSt[i, 3] = 1;//連射力
         BSt[i, 4] = 5;//装填数
-        BSt[i, 5] = 70;//リロード速度
+        BSt[i, 5] = 1.2f;//リロード速度
         BSt[i, 6] = 20;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -238,7 +238,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 0;//ノックバック
         BSt[i, 3] = 12;//連射力
         BSt[i, 4] = 30;//装填数
-        BSt[i, 5] = 60;//リロード速度
+        BSt[i, 5] = 1f;//リロード速度
         BSt[i, 6] = 40;//弾速
         BSt[i, 7] = 1;//発射方式
         BSt[i, 8] = 2;//発射数
@@ -256,7 +256,7 @@ public class GunDeta : MonoBehaviour
         BSt[i, 2] = 1;//ノックバック
         BSt[i, 3] = 3;//連射力
         BSt[i, 4] = 4;//装填数
-        BSt[i, 5] = 40;//リロード速度
+        BSt[i, 5] = 1.5f;//リロード速度
         BSt[i, 6] = 20;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -272,9 +272,9 @@ public class GunDeta : MonoBehaviour
         BSt[i, 0] = 100;//威力
         BSt[i, 1] = 0;//属性[無 炎 氷 雷 魔]
         BSt[i, 2] = 1;//ノックバック
-        BSt[i, 3] = 0.6f;//連射力
+        BSt[i, 3] = 0.5f;//連射力
         BSt[i, 4] = 1;//装填数
-        BSt[i, 5] = 100;//リロード速度
+        BSt[i, 5] = 0f;//リロード速度
         BSt[i, 6] = 25;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -290,9 +290,9 @@ public class GunDeta : MonoBehaviour
         BSt[i, 0] = 100;//威力
         BSt[i, 1] = 1;//属性[無 炎 氷 雷 魔]
         BSt[i, 2] = 1;//ノックバック
-        BSt[i, 3] = 0.6f;//連射力
+        BSt[i, 3] = 0.5f;//連射力
         BSt[i, 4] = 1;//装填数
-        BSt[i, 5] = 100;//リロード速度
+        BSt[i, 5] = 0;//リロード速度
         BSt[i, 6] = 25;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -308,9 +308,9 @@ public class GunDeta : MonoBehaviour
         BSt[i, 0] = 100;//威力
         BSt[i, 1] = 2;//属性[無 炎 氷 雷 魔]
         BSt[i, 2] = 1;//ノックバック
-        BSt[i, 3] = 0.6f;//連射力
+        BSt[i, 3] = 0.5f;//連射力
         BSt[i, 4] = 1;//装填数
-        BSt[i, 5] = 100;//リロード速度
+        BSt[i, 5] = 0;//リロード速度
         BSt[i, 6] = 25;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数
@@ -326,9 +326,9 @@ public class GunDeta : MonoBehaviour
         BSt[i, 0] = 100;//威力
         BSt[i, 1] = 3;//属性[無 炎 氷 雷 魔]
         BSt[i, 2] = 1;//ノックバック
-        BSt[i, 3] = 0.6f;//連射力
+        BSt[i, 3] = 0.5f;//連射力
         BSt[i, 4] = 1;//装填数
-        BSt[i, 5] = 100;//リロード速度
+        BSt[i, 5] = 0;//リロード速度
         BSt[i, 6] = 25;//弾速
         BSt[i, 7] = 0;//発射方式
         BSt[i, 8] = 1;//発射数

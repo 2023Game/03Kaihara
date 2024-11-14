@@ -45,6 +45,7 @@ public class BulletMoob : MonoBehaviour
             case 3: //‰‘¬“x‚Ì‚İó‚¯‚ÄŒã‚Íd—Í‚É]‚¤
                 if (Moob)
                 {
+                    rigib.gravityScale = 0.5f;
                     rigib.velocity = transform.right * BSp;
                     Moob = false;
                 }

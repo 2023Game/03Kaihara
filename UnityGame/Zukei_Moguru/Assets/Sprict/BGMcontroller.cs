@@ -7,12 +7,14 @@ using UnityEngine.SceneManagement;
 public class BGMcontroller : MonoBehaviour
 {
     new AudioSource audio;
-    bool Fade = false;
+    public static bool ones = true;
+    public static bool Fade = false;
     public Text Stagename;
-    public AudioClip A;
-    public AudioClip B;
-    public AudioClip B_Boss;
+    public AudioSource A;
+    public AudioSource B;
+    public AudioSource B_Boss;
     GameObject player;
+    static public float Takasa;
     void Start()
     {
         audio = GetComponent<AudioSource>();
@@ -22,45 +24,42 @@ public class BGMcontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Fade) //音を徐々に消す
-        {
-            audio.volume -= 0.01f;
-        }
-        else //音を出す
-        {
-            audio.volume = 0.5f;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        //ステージの境界に触れると音を消す
-        if (other.gameObject.tag == "StageBorder")
+        Takasa = player.GetComponent<Transform>().position.y;
+        if (Takasa % 200 <= -40 && Takasa % 200 >= -50)
         {
             Fade = true;
+            ones = true;
         }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        //ステージの境界から出ると音を出す
-        if (other.gameObject.tag == "StageBorder")
+        else if (ones)
         {
-            Fade = false;
+            StartCoroutine(Utilities.DelayMethod(1, () => audio.Stop()));
             //自分の位置によってBGMを変える
-            if(player.transform.position.y <= -50)
+            if (Takasa <= -50)
             {
-                audio.Stop();
-                StageNameChange(2);
-                audio.PlayOneShot(B);
+                StartCoroutine(Utilities.DelayMethod(1, () => StageNameChange(2)));
+                StartCoroutine(Utilities.DelayMethod(1, () => B.volume = 0.5f));
+                StartCoroutine(Utilities.DelayMethod(1, () => B.Play()));
             }
             else
             {
-                audio.Stop();
-                StageNameChange(1);
-                audio.PlayOneShot(A);
+                StartCoroutine(Utilities.DelayMethod(1, () => StageNameChange(1)));
+                StartCoroutine(Utilities.DelayMethod(1, () => A.volume = 0.5f));
+                StartCoroutine(Utilities.DelayMethod(1, () => A.Play()));
             }
+            ones = false;
+            StartCoroutine(Utilities.DelayMethod(1, () => Fade = false));
+        }
+        if (Fade) //音を徐々に消す
+        {
+            A.volume -= 0.01f;
+            B.volume -= 0.01f;
+        }
+        else //音を出す
+        {
+
         }
     }
+
     void StageNameChange(int i)
     {
         switch(i)

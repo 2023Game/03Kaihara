@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Tail
   - StageBorder
+  - EBullet
   layers:
   - Default
   - TransparentFX
